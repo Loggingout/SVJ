@@ -35,3 +35,66 @@ body {
     width: 50px;
     height: 50px;
 }
+
+/*Main styles*/
+.main-bg-container {
+    padding: 100px;
+    background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+}
+
+.main-banner {
+    box-shadow: 0 0 25px 1px black;
+}
+
+.main-link {
+    text-decoration: none;
+    color: black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient( 109.6deg,  rgba(143,57,213,1) 11.2%, rgba(96,227,109,1) 91.1% );
+}
+
+.slogan-content-container {
+    width: 300px;
+}
+
+.slogan {
+    text-shadow: 0 0 13px black;
+    font-size: 3rem;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient( 109.6deg,  rgba(143,57,213,1) 11.2%, rgba(96,227,109,1) 91.1% );
+}
+
+.slogan-btn {
+    box-shadow: 0 0 15px green;
+}
+
+/*About Styles*/
+
+.about-us-container {
+    background: url(/Assets/blue\ streak.jpg) no-repeat center center/cover;
+    padding: 100px;
+}
+
+
+
+/*Media queries*/
+
+@media (min-width: 320px) and (max-width: 420px) {}
+
+@media (min-width: 375px) and (max-width: 475px) {
+    .slogan {
+        font-size: 1.5rem;
+    }
+    .slogan-content-container {
+        flex-direction: column;
+    }
+
+    .main-banner {
+        margin-top: 20px;
+    }
+    .main-link {
+        font-size: 1rem;
+    }
+}
