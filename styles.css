@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 html {
@@ -38,8 +39,8 @@ body {
 
 /*Main styles*/
 .main-bg-container {
-    padding: 100px;
-    background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+    padding: 400px;
+    background: url(/Assets/PBB\ Frame.png) no-repeat center center/cover;
 }
 
 .main-banner {
@@ -55,7 +56,8 @@ body {
 }
 
 .slogan-content-container {
-    width: 300px;
+    position: relative;
+    bottom: 230px;
 }
 
 .slogan {
@@ -66,15 +68,23 @@ body {
     background-image: linear-gradient( 109.6deg,  rgba(143,57,213,1) 11.2%, rgba(96,227,109,1) 91.1% );
 }
 
-.slogan-btn {
-    box-shadow: 0 0 15px green;
-}
 
 /*About Styles*/
 
 .about-us-container {
-    background: url(/Assets/blue\ streak.jpg) no-repeat center center/cover;
+    background: "#f5f5f5";
     padding: 100px;
+}
+
+.about-card-img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/*Company container styles*/
+.company-bg-container {
+    background: url(/Assets/Company\ banner.png) no-repeat center center/cover;
+    padding: 350px;
 }
 
 
@@ -97,4 +107,54 @@ body {
     .main-link {
         font-size: 1rem;
     }
+
+    .about-us-content-container {
+        flex-direction: column;
+    
+    }
+
+    .company-bg-container {
+        padding: 0;
+    }
 }
+
+@media (min-width: 575px) and (max-width: 675px) {
+    .slogan {
+        font-size: 2rem;
+    }
+    .slogan-content-container {
+        flex-direction: column;
+    }
+
+    .main-banner {
+        margin-top: 20px;
+    }
+    .main-link {
+        font-size: 1rem;
+    }
+
+    .about-us-content-container {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 690px) and (max-width: 775px) {
+    .slogan {
+        font-size: 2.3rem;
+    }
+    .slogan-content-container {
+        flex-direction: column;
+    }
+
+    .main-banner {
+        margin-top: 20px;
+    }
+    .main-link {
+        font-size: 1rem;
+    }
+
+    .about-us-content-container {
+        flex-direction: column;
+    }
+}
+
