@@ -1,6 +1,6 @@
 ## Fantome Technologies
 
-⚠️Project In Mid Stages Of Development, Will be finished in the next week.⚠️
+⚠️Project In Mid Stages Of Development⚠️
 
 This is my company website.
 
