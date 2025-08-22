@@ -36,7 +36,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a  class="nav-link text-light" href="#">
+                                <a  class="nav-link text-light" href="#book">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-code" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8.646 5.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 8 8.646 6.354a.5.5 0 0 1 0-.708m-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 8l1.647-1.646a.5.5 0 0 0 0-.708"/>
                                         <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
@@ -121,7 +121,7 @@
         <!---->
         <div class="container-fluid company-bg-container">
             <!--company content container-->
-            <div class="container company-content-container">
+            <div class="container justify-content-center company-content-container">
                 <div class="company-content" id="about">
                     <h2 class="company-subtitle mb-5">Journey</h2>
                     <p class="company-text">
@@ -133,7 +133,6 @@
                     <p class="company-text">
                         Fantome Technologies thrives to bring to life the perfect website for our customers.
                     </p>
-                    <p class="company-text"></p>
                 </div>
             </div>
         </div>
@@ -142,9 +141,9 @@
         <!---->
         <div class="container-fluid service-bg-container">
             <!---->
-            <div class="container d-flex service-content-container">
+            <div class="container-fluid d-flex service-content-container overflow-hidden" id="service-content-container">
                 <!--Service divs-->
-                <div class="container-sm">
+                <div class="container-sm mb-4">
                     <div>
                         <img src="/Assets/Example LP.png" alt="" class="img-fluid service-img">
                     </div>
@@ -156,9 +155,9 @@
                     </div>
                 </div>
                 <!---->
-                <div class="container-sm">
+                <div class="container-sm mb-4">
                     <div>
-                        <img src="/Assets/Example Portfolio.png" alt="" class="img-fluid service-img">
+                        <img src="/Assets/Ex Num Analytics.png" alt="" class="img-fluid service-img">
                     </div>
                     <!--Service text content-->
                     <div class="service-text-container text-center">
@@ -170,7 +169,7 @@
                 <!---->
                 <div class="container-sm">
                     <div>
-                        <img src="/Assets/Ex Num Analytics.png" alt="" class="img-fluid service-img">
+                        <img src="/Assets/Example Portfolio.png" alt="" class="img-fluid service-img">
                     </div>
                     <!--Service text content-->
                     <div class="service-text-container text-center">
@@ -179,6 +178,7 @@
                         <p>"We provide simple, unqiue, elegant landing page styles to test the demand behind you product."</p>
                     </div>
                 </div>
+                <!--End-->
             </div>
         </div>
     </section>
@@ -189,7 +189,7 @@
             <div class="container-fluid ">
                 <!--Book now text container-->
                 <div class="container-fluid p-4 rounded-2 bg-primary overflow-hidden">
-                    <h2 class="text-center">Book Now</h2>
+                    <h2 class="text-center" id="book">Book Now</h2>
                     <p class="text-center"><span class="">Set up an appointment!</span></p>
                     <div class="">
                         <p class="text-center">Right now sending a message via email will be the best way to book</p>
@@ -209,13 +209,27 @@
                             <img src="/Assets/Travel LP.png" alt="" class="book-imgs">
                         </div>
                     </div>
-                    <h5 class="text-center">Let's Build Togther</h5>
+                    <h5 class="text-center">Let's Build Togther 💡</h5>
+                    <div class="text-center ">
+                        <h6>Phone: (7)-953-2921</h6>
+                        <h6>Email: FantomeTechnologies@gmail.com</h6>
+                    </div>
                 </div>
                 <!---->
             </div>
         </div>
     </section>
-    <footer></footer>
+    <footer>
+        <!---->
+        <div class="container">
+            <div>
+                <img src="/Assets/FT Logo 2.JPG" alt="" class="footer-logo">
+            </div>
+            <div class="d-flex">
+                <p>©Fantome Technologies  2024 all rights reserved. Fantome Technologies trademarks are trademarks or registered trademarks of Fantome Technologies. All other trademarks and trade names are the property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </html>

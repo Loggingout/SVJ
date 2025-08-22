@@ -41,6 +41,7 @@ body {
 .main-bg-container {
     padding: 450px;
     background: url(/Assets/computer\ banner.png) no-repeat center center/cover;
+    
 }
 
 .slogan-content-container {
@@ -96,7 +97,7 @@ body {
 /*Company container styles*/
 .company-bg-container {
     background: url(/Assets/Logo\ banner.png) no-repeat center center/cover;
-    padding: 310px;
+    padding: 270px;
 }
 
 .company-content {
@@ -113,11 +114,9 @@ body {
 .company-text {
     font-size: 1.4rem;
     letter-spacing: 0.1rem;
-    text-shadow: 30px 10px 15px black;
     font-family: "Bodoni Moda", serif;
-    font-weight: 600;
+    font-weight: 800;
 }
-
 
 
 /*Service styling*/
@@ -125,9 +124,14 @@ body {
     flex-direction: row;
     grid-template-rows: minmax(1fr 1fr) auto;
     grid-template-columns: repeat(minmax(1fr 1fr) auto);
-    padding: 300px;
+    padding: 150px;
+    /*Slide Animation*/
+    /*Add Js to animation. Animation does't work as intended.*/
+    animation: 35s infinite linear reverse slide-over;
+    gap: 10rem;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
 }
-
 
 .service-img {
     width: 300px;
@@ -144,10 +148,42 @@ body {
     padding: 100px;
 }
 
+.book-img-container {
+    -webkit-mask: linear-gradient(transparent, gray);
+    mask: linear-gradient(transparent, gray);
+}
+
 .book-imgs {
     width: 300px;
     border-radius: 5px;
 }
+
+
+/*Footer styles*/
+footer {
+    position: relative;
+    bottom: 0;
+}
+
+.footer-logo {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
+
+
+/*Animations*/
+@keyframes slide-over {
+    from  {
+        transform: translate(calc(-150% - 150px))
+    }
+
+    to {
+        transform: translate(0)
+    }
+}
+
+
 /*Media queries*/
 
 @media (min-width: 320px) and (max-width: 420px) {}
@@ -170,13 +206,14 @@ body {
     }
 
     .company-bg-container {
-        padding: 250px;
+        padding: 200px;
     }
 
     /*Service*/
 
     .service-content-container {
         flex-direction: column;
+     
     }
 
     /*Book Styles*/
