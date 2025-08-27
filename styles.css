@@ -44,7 +44,6 @@ body {
 
 
 .slogan {
-    text-shadow: 30px 20px 15px black;
     font-size: 3rem;
     -webkit-background-clip: text;
     background-clip: text;
@@ -52,6 +51,11 @@ body {
     background-image: radial-gradient( circle farthest-corner at 3.2% 49.6%,  rgba(80,12,139,0.87) 0%, rgba(161,10,144,0.72) 83.6% );
     font-family: "Bodoni Moda", serif;
     line-height: 3rem;
+}
+
+.read-more-link {
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -108,14 +112,14 @@ body {
     flex-direction: row;
     grid-template-rows: minmax(1fr 1fr) auto;
     grid-template-columns: repeat(minmax(1fr 1fr) auto);
-    padding: 100px;
+    padding: 50px;
     /*Slide Animation*/
     /*Add Js to animation. Animation does't work as intended.*/
-    /*Animation changed from sliding to scaling*/
+    /*Animation changed from sliding to scaling
     animation: 45s infinite linear reverse slide-over;
     gap: 10rem;
     flex-shrink: 0;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap;*/
 }
 
 .service-img {
@@ -175,7 +179,7 @@ footer {
 
 @media (min-width: 375px) and (max-width: 475px) {
     .slogan {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     
     .main-content-container {
@@ -225,7 +229,7 @@ footer {
 
 @media (min-width: 480px) and (max-width: 499px){
     .slogan {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
     }
     .slogan-content-container {
         flex-direction: column;

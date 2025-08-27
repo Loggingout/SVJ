@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+
+}
+
+.read-more-container {
+    padding: 100px 0;
+    margin: 100px 0;
+}
+
+.return-home-link {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.readMore-img {
+    height: 300px;
+}
+
+.readMore-highlight {
+    font-weight: 600;
+}
