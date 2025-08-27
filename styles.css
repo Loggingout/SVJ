@@ -39,15 +39,9 @@ body {
 
 /*Main styles*/
 .main-bg-container {
-    padding: 450px;
-    background: url(/Assets/computer\ banner.png) no-repeat center center/cover;
-    
+    padding: 100px;
 }
 
-.slogan-content-container {
-    position: relative;
-    bottom: 230px;
-}
 
 .slogan {
     text-shadow: 30px 20px 15px black;
@@ -57,8 +51,9 @@ body {
     -webkit-text-fill-color: transparent;
     background-image: radial-gradient( circle farthest-corner at 3.2% 49.6%,  rgba(80,12,139,0.87) 0%, rgba(161,10,144,0.72) 83.6% );
     font-family: "Bodoni Moda", serif;
-    line-height: 5rem;
+    line-height: 3rem;
 }
+
 
 
 /*About Styles*/
@@ -68,10 +63,10 @@ body {
     padding: 100px;
 }
 
-
-.about-card-img {
+.about-img {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    width: 70%
 }
 
 .about-slogan {
@@ -80,42 +75,31 @@ body {
     font-size: 3rem;
 }
 
-.about-card-container {
-    width: 40%;
+.about-slogan-container {
+    -webkit-mask: linear-gradient(transparent, gray);
+    mask: linear-gradient(transparent, gray);
 }
 
-.card-title {
-    font-family: "Bodoni Moda", serif;
-    font-size: 2rem;
+.about-grid-img:hover {
+    border: 1px solid black;
 }
 
-.card-text {
-    font-family: "Bodoni Moda", serif;
-    font-size: 1.2rem;
-    line-height: 2rem;
-}
 /*Company container styles*/
 .company-bg-container {
-    background: url(/Assets/Logo\ banner.png) no-repeat center center/cover;
-    padding: 270px;
-}
-
-.company-content {
-    width: 70%;
+    padding: 100px;
 }
 
 .company-subtitle {
-    text-shadow: 0 0px 55px #f5f5f5;
     font-size: 3rem;
     font-family: "Bodoni Moda", serif;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .company-text {
     font-size: 1.4rem;
     letter-spacing: 0.1rem;
     font-family: "Bodoni Moda", serif;
-    font-weight: 800;
+    font-weight: 300;
 }
 
 
@@ -124,10 +108,11 @@ body {
     flex-direction: row;
     grid-template-rows: minmax(1fr 1fr) auto;
     grid-template-columns: repeat(minmax(1fr 1fr) auto);
-    padding: 150px;
+    padding: 100px;
     /*Slide Animation*/
     /*Add Js to animation. Animation does't work as intended.*/
-    animation: 35s infinite linear reverse slide-over;
+    /*Animation changed from sliding to scaling*/
+    animation: 45s infinite linear reverse slide-over;
     gap: 10rem;
     flex-shrink: 0;
     flex-wrap: nowrap;
@@ -175,11 +160,11 @@ footer {
 /*Animations*/
 @keyframes slide-over {
     from  {
-        transform: translate(calc(-150% - 150px))
+        scale: 50%
     }
 
     to {
-        transform: translate(0)
+        scale: 90%;
     }
 }
 
@@ -192,7 +177,8 @@ footer {
     .slogan {
         font-size: 2rem;
     }
-    .slogan-content-container {
+    
+    .main-content-container {
         flex-direction: column;
     }
 
@@ -207,6 +193,20 @@ footer {
 
     .company-bg-container {
         padding: 200px;
+    }
+
+    /*Company styles*/
+
+    .company-content-container {
+        flex-direction: column;
+    }
+
+    .company-subtitle {
+        font-size: 2rem;
+    }
+
+    .company-text {
+        font-size: 1rem;
     }
 
     /*Service*/
@@ -241,6 +241,21 @@ footer {
         padding: 250px;
     }
 
+
+    /*Company styles*/
+
+    .company-content-container {
+        flex-direction: column;
+    }
+
+    .company-subtitle {
+        font-size: 2rem;
+    }
+
+    .company-text {
+        font-size: 1rem;
+    }
+
     /*Service*/
     .service-content-container {
         flex-direction: column;
@@ -269,6 +284,21 @@ footer {
 
     .company-bg-container {
         padding: 250px;
+    }
+
+
+    /*Company styles*/
+
+    .company-content-container {
+        flex-direction: column;
+    }
+
+    .company-subtitle {
+        font-size: 2rem;
+    }
+
+    .company-text {
+        font-size: 1rem;
     }
 
     /*Service*/
@@ -301,6 +331,21 @@ footer {
         padding: 250px;
     }
 
+
+    /*Company styles*/
+
+    .company-content-container {
+        flex-direction: column;
+    }
+
+    .company-subtitle {
+        font-size: 2rem;
+    }
+
+    .company-text {
+        font-size: 1rem;
+    }
+
     /*Service*/
 
     .service-content-container {
@@ -327,8 +372,22 @@ footer {
         flex-direction: column;
     }
 
+    /*Company styles*/
+    
     .company-bg-container {
         padding: 350px;
+    }
+
+    .company-content-container {
+        flex-direction: column;
+    }
+
+    .company-subtitle {
+        font-size: 2rem;
+    }
+
+    .company-text {
+        font-size: 1rem;
     }
 
     /*Service*/
