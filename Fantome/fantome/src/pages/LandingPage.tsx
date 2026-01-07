@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Sparkles, Code, Palette, TrendingUp, Shield, Award, Zap } from 'lucide-react';
+import BookingForm from '../components/forms/BookingForm'; // Add this import
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -138,61 +139,12 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Booking Form Modal */}
+      {/* Booking Form Modal - NOW USING THE BOOKINGFORM COMPONENT */}
       {showForm && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gradient-to-br from-slate-900 to-purple-900 p-8 rounded-2xl max-w-md w-full border border-purple-500/30 shadow-2xl">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Let's Build Together
-              </h3>
-              <button
-                onClick={() => setShowForm(false)}
-                className="text-gray-400 hover:text-white transition-colors text-2xl"
-              >
-                ×
-              </button>
-            </div>
-            
-            <div className="space-y-5">
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-purple-300">Business Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors"
-                  placeholder="Your business name"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-purple-300">Product Idea</label>
-                <textarea
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors h-32 resize-none"
-                  placeholder="Tell us about your project vision"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-purple-300">Estimated Budget</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors"
-                  placeholder="$5,000 - $10,000"
-                />
-              </div>
-              
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  // Form submission logic will go here
-                }}
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-bold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
-              >
-                Submit Request
-              </button>
-            </div>
-          </div>
-        </div>
+        <BookingForm 
+          isModal={true}
+          onClose={() => setShowForm(false)} 
+        />
       )}
     </div>
   );

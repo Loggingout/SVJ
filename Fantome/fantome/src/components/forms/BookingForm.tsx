@@ -12,23 +12,61 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
     productIdea: '',
     estimatedBudget: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     
-    // Add your form submission logic here
-    console.log('Form submitted:', formData);
-    
-    // Reset form
-    setFormData({
-      businessName: '',
-      productIdea: '',
-      estimatedBudget: ''
-    });
-    
-    // Close modal if applicable
-    if (onClose) {
-      onClose();
+    // Validation
+    if (!formData.businessName || !formData.productIdea || !formData.estimatedBudget) {
+      setError('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await fetch('https://congenial-broccoli-jjrv5pxpv565c57w7-5000.app.github.dev/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit booking');
+      }
+
+      const result = await response.json();
+      console.log('Booking submitted successfully:', result);
+      
+      // Show success message
+      setSuccess(true);
+      
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        setFormData({
+          businessName: '',
+          productIdea: '',
+          estimatedBudget: ''
+        });
+        setSuccess(false);
+        
+        // Close modal if applicable
+        if (onClose) {
+          onClose();
+        }
+      }, 2000);
+
+    } catch (err) {
+      console.error('Error submitting booking:', err);
+      setError('Failed to submit booking. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -38,6 +76,8 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
       ...prev,
       [name]: value
     }));
+    // Clear error when user starts typing
+    if (error) setError(null);
   };
 
   const formContent = (
@@ -60,6 +100,20 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
         )}
       </div>
       
+      {/* Error Message */}
+      {error && (
+        <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200 text-sm">
+          {error}
+        </div>
+      )}
+
+      {/* Success Message */}
+      {success && (
+        <div className="mb-4 p-3 bg-green-500/20 border border-green-500/50 rounded-lg text-green-200 text-sm">
+          ✓ Booking submitted successfully!
+        </div>
+      )}
+      
       <div className="space-y-5">
         <div>
           <label htmlFor="businessName" className="block text-sm font-semibold mb-2 text-purple-300">
@@ -71,7 +125,8 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
             type="text"
             value={formData.businessName}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
+            disabled={isSubmitting}
+            className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white disabled:opacity-50 disabled:cursor-not-allowed"
             placeholder="Your business name"
             required
           />
@@ -86,7 +141,8 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
             name="productIdea"
             value={formData.productIdea}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors h-32 resize-none text-white"
+            disabled={isSubmitting}
+            className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors h-32 resize-none text-white disabled:opacity-50 disabled:cursor-not-allowed"
             placeholder="Tell us about your project vision"
             required
           />
@@ -102,7 +158,8 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
             type="text"
             value={formData.estimatedBudget}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
+            disabled={isSubmitting}
+            className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/30 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white disabled:opacity-50 disabled:cursor-not-allowed"
             placeholder="$5,000 - $10,000"
             required
           />
@@ -110,9 +167,10 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
         
         <button
           onClick={handleSubmit}
-          className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-bold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 text-white"
+          disabled={isSubmitting}
+          className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-bold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
-          Submit Request
+          {isSubmitting ? 'Submitting...' : 'Submit Request'}
         </button>
       </div>
     </div>
