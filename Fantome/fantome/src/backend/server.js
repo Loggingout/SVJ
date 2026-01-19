@@ -16,8 +16,26 @@ console.log('MONGODB_URI exists?', process.env.MONGODB_URI ? 'YES ✓' : 'NO ✗
 const app = express();
 
 // CORS Configuration - MUST BE BEFORE OTHER MIDDLEWARE
+const allowedOrigins = [
+  'https://congenial-broccoli-jjrv5pxpv565c57w7-5173.app.github.dev', // Codespace frontend
+  'https://fantometechnologies.com', // Replace with your actual domain
+  'https://fantometechnologies.vercel.app/', // If you use www
+  'http://localhost:5173', // Local development
+  'http://localhost:3000', // Alternative local port
+];
+
 app.use(cors({
-  origin: '*', // Allow all origins
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.log('❌ Blocked by CORS:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
@@ -93,5 +111,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✓ Server running on port ${PORT}`);
   console.log(`✓ Listening on 0.0.0.0:${PORT}`);
-  console.log(`✓ CORS enabled for all origins`);
+  console.log(`✓ CORS enabled for origins:`, allowedOrigins);
 });

@@ -29,7 +29,7 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
     setError(null);
 
     try {
-      const response = await fetch('https://congenial-broccoli-jjrv5pxpv565c57w7-5000.app.github.dev/api/bookings', {
+      const response = await fetch('https://fantome-technologies.onrender.com/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
