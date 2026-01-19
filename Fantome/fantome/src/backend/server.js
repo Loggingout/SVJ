@@ -18,8 +18,8 @@ const app = express();
 // CORS Configuration - MUST BE BEFORE OTHER MIDDLEWARE
 const allowedOrigins = [
   'https://congenial-broccoli-jjrv5pxpv565c57w7-5173.app.github.dev', // Codespace frontend
-  'https://fantometechnologies.com', // Replace with your actual domain
-  'https://fantometechnologies.vercel.app/', // If you use www
+  'https://fantometechnologies.com', // 
+  'https://fantometechnologies.vercel.app', // 
   'http://localhost:5173', // Local development
   'http://localhost:3000', // Alternative local port
 ];
