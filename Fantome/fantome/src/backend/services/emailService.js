@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 class EmailService {
   async sendBookingNotification(bookingData) {
     const response = await fetch('https://api.unosend.com/v1/emails', {

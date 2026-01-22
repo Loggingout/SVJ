@@ -86,6 +86,32 @@ app.get('/', (req, res) => {
   });
 });
 
+//Email test route
+app.get('/test-email', async (req, res) => {
+  try {
+    const response = await fetch('https://api.unosend.com/v1/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.UNOSEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: process.env.EMAIL_FROM,
+        to: process.env.EMAIL_TO,
+        subject: 'Test Email',
+        html: '<p>If you see this, UnoSend works!</p>',
+      }),
+    });
+
+    const data = await response.json();
+    res.json({ success: true, data });
+  } catch (err) {
+    console.error('❌ Test email failed:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✓ Server running on port ${PORT}`);
