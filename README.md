@@ -1,8 +1,8 @@
 ## Fantome Technologies
 
-⚠️Project In Mid Stages Of Development⚠️
+⚠️Project In Final Stages Of Development⚠️
 
-This is my company website.
+This is my company website for Web and Software Development.
 
 ## 💡Tech Stack & Frameworks
 
@@ -12,14 +12,32 @@ CSS
 
 SCSS
 
-Bootstrap
+Bootstrap (No longer using)
 
-JavaScript 
+JavaScript
+
+TypeScript
+
+React (New)
+
+Tailwind (New)
 
 ## 🧑‍💻 Backend Frameworks & Data storage
 
-No backend frameworks used on this project yet.
+Using node.js and express.js for the backend frameworks
+
+MongoDB is being used for company data collection
+
+Resend is used for sending emails out to clients
+
+
 
 ## 💢 Updates 💢
 
-No current updates, check back here to stay informed.
+V1.0.0
+
+UI design updated from simple HTML layout to React.js and Vite layout
+
+Frontend and backend framework setup
+
+Contact form added along with the correct routes
