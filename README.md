@@ -41,3 +41,5 @@ UI design updated from simple HTML layout to React.js and Vite layout
 Frontend and backend framework setup
 
 Contact form added along with the correct routes
+
+Domain configuration connected using Vercel & Ionos, no more problems with lazy loading or website not loading at all
