@@ -10,7 +10,7 @@ HTML
 
 CSS
 
-SCSS
+SCSS (no longer using)
 
 Bootstrap (No longer using)
 
