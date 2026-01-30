@@ -1,9 +1,13 @@
+{/**FOOTER IS NEEDED WITH TERMS AND POLICY PAGES, BUSINESS EMAIL AND HOURS NEED TO BE DISPLAYED. */}
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Sparkles, Code, Palette, TrendingUp, Shield, Award, Zap } from 'lucide-react';
-import BookingForm from '../components/forms/BookingForm'; // Add this import
-
+import BookingForm from '../components/forms/BookingForm';
+import Navbar from '../components/header/Navbar';
+ 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
@@ -12,24 +16,14 @@ const LandingPage = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(147,51,234,0.1),transparent_50%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(139,92,246,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(139,92,246,0.1)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         
-        <nav className="relative z-10 flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-8 h-8 text-purple-400" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Fantome Technologies
-            </span>
-          </div>
-          <button
-            onClick={() => setShowForm(true)}
-            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
-          >
-            Book Now
-          </button>
-        </nav>
+        <Navbar 
+        onBookNow={() => setShowForm(true)} 
+        onAboutUs={() => navigate('/about')}
+        />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-8 py-24 text-center">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent animate-[fadeIn_1s_ease-in]">
-            Build Your Digital Future
+        <div className="relative z-10 max-w-7xl mx-auto px-8 py-25 text-center">
+          <h1 className="text-6xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent animate-[fadeIn_1s_ease-in]">
+            High-performance websites for small buisness that need guniue customers; Not just a pretty site.
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
             Transform your vision into stunning web experiences that captivate and convert

@@ -1,0 +1,69 @@
+import { useState } from 'react'
+import AboutUsButton from '../buttons/AboutUsButton'
+import BookingButton from '../buttons/BookingButton'
+import { Sparkles, Menu, X } from 'lucide-react'
+
+interface NavbarProps {
+  onBookNow: () => void
+  onAboutUs: () => void
+}
+
+export default function Navbar({ onBookNow, onAboutUs }: NavbarProps) {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  return (
+    <nav className="relative z-20 px-8 py-6 max-w-7xl mx-auto">
+      <div className="flex justify-between items-center">
+        {/* Logo / Brand */}
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-8 h-8 text-purple-400" />
+          <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Fantome Technologies
+          </span>
+        </div>
+
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center gap-4">
+          <AboutUsButton onClick={onAboutUs} />
+          <BookingButton onClick={onBookNow} />
+        </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={() => setMenuOpen(prev => !prev)}
+          className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+          aria-label="Toggle navigation"
+        >
+          {menuOpen ? (
+            <X className="w-7 h-7 text-purple-600" />
+          ) : (
+            <Menu className="w-7 h-7 text-purple-600" />
+          )}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`
+          md:hidden overflow-hidden transition-all duration-300 ease-out
+          ${menuOpen ? 'max-h-40 opacity-100 mt-6' : 'max-h-0 opacity-0'}
+        `}
+      >
+        <div className="flex flex-col gap-4 bg-white rounded-2xl p-6 shadow-lg">
+          <AboutUsButton
+            onClick={() => {
+              setMenuOpen(false)
+              onAboutUs()
+            }}
+          />
+          <BookingButton
+            onClick={() => {
+              setMenuOpen(false)
+              onBookNow()
+            }}
+          />
+        </div>
+      </div>
+    </nav>
+  )
+}
