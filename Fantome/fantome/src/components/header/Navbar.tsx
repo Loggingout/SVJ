@@ -2,6 +2,7 @@ import { useState } from 'react'
 import AboutUsButton from '../buttons/AboutUsButton'
 import BookingButton from '../buttons/BookingButton'
 import { Sparkles, Menu, X } from 'lucide-react'
+import Logo from '../../assets/New Logo.png'
 
 interface NavbarProps {
   onBookNow: () => void
@@ -16,7 +17,7 @@ export default function Navbar({ onBookNow, onAboutUs }: NavbarProps) {
       <div className="flex justify-between items-center">
         {/* Logo / Brand */}
         <div className="flex items-center gap-2">
-          <Sparkles className="w-8 h-8 text-purple-400" />
+          <img src={Logo} alt="Fantome Technologies Logo" className="h-12 w-auto rounded-2xl" />
           <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Fantome Technologies
           </span>

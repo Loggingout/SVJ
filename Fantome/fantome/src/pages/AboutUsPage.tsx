@@ -167,7 +167,7 @@ export default function AboutUsPage() {
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center top-100">
-            <p className="text-white text-lg sm:text font-semibold">
+            <p className="text-white text-lg sm:text-xl md:text-2xl text-center px-4 font-semibold">
               "Pictures of our future team"
             </p>
           </div>
