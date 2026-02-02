@@ -1,6 +1,7 @@
 import Navbar from "../components/header/Navbar";
 import ReturnHomeButton from "../components/buttons/ReturnHomeButton";
 import BookingForm from "../components/forms/BookingForm";
+import DiscoveryDropdown from "../components/dropdowns/DiscoveryDropdown";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -32,6 +33,7 @@ export default function ServicesPage() {
       <Navbar
         onBookNow={() => setShowForm(true)}
         onAboutUs={() => navigate("/about")}
+        onRequestQuote={() => navigate("/request-quote")}
       />
 
       {/* Services Section */}
@@ -47,8 +49,8 @@ export default function ServicesPage() {
               Modern Website Development
             </h3>
             <p className="text-gray-600">
-              Cutting-edge web applications built with the latest technologies
-              for optimal performance and user experience.
+              We build fast, modern web apps using proven technologies that
+              actually work for your users—not just whatever's trendy.
             </p>
           </div>
 
@@ -58,8 +60,8 @@ export default function ServicesPage() {
               Sleek Landing Pages
             </h3>
             <p className="text-gray-600">
-              High-converting landing pages designed to capture attention and
-              drive action from your audience.
+              Landing pages that get people to stop scrolling and take action.
+              Clean design, clear message, real results
             </p>
           </div>
 
@@ -69,10 +71,15 @@ export default function ServicesPage() {
               Website Design Overhauls
             </h3>
             <p className="text-gray-600">
-              Breathe new life into your existing website with a complete design
-              transformation that elevates your brand.
+              Your website deserves better. We'll redesign it from the ground up
+              to match where your brand is today—and where it's going.
             </p>
           </div>
+        </div>
+
+        {/**Discovery Dropdown */}
+        <div className="max-w-4xl mx-auto mb-24">
+          <DiscoveryDropdown />
         </div>
 
         {/* Management Tiers */}
@@ -141,6 +148,11 @@ export default function ServicesPage() {
       </div>
 
       {/*Footer*/}
+
+      {/* Booking Form Modal */}
+      {showForm && (
+        <BookingForm isModal={true} onClose={() => setShowForm(false)} />
+      )}
 
       {/* Return Home Button */}
       {showReturnHome && (

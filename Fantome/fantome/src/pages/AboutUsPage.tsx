@@ -1,5 +1,6 @@
 import Navbar from "../components/header/Navbar";
 import ReturnHomeButton from "../components/buttons/ReturnHomeButton";
+import BookingForm from "../components/forms/BookingForm";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import StudioImg from "../assets/FT Studio.png";
@@ -9,6 +10,7 @@ import { Building2, Code2, Users, MapPin, Calendar } from "lucide-react";
 export default function AboutUsPage() {
   const navigate = useNavigate();
   const [showReturnHome, setShowReturnHome] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +24,11 @@ export default function AboutUsPage() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Navbar */}
-      <Navbar onBookNow={() => {}} />
+      <Navbar
+        onBookNow={() => setShowForm(true)}
+        onAboutUs={() => navigate("/about")}
+        onRequestQuote={() => navigate("/request-quote")}
+      />
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 py-20 text-center">
@@ -66,8 +72,7 @@ export default function AboutUsPage() {
             <div>
               <h3 className="text-2xl font-semibold mb-2">Team</h3>
               <p className="text-gray-600">
-                Currently a one-developer studio, ensuring direct communication,
-                fast iteration, and high attention to detail on every project.
+                A focued, one-developer studio - meaning your project get direct attention, faster turnaround, and zero middleman.
               </p>
             </div>
           </div>
@@ -173,6 +178,11 @@ export default function AboutUsPage() {
           </div>
         </div>
       </section>
+
+      {/* Booking Form Modal */}
+      {showForm && (
+        <BookingForm isModal={true} onClose={() => setShowForm(false)} />
+      )}
 
       {/* Return Home Button */}
       {showReturnHome && (

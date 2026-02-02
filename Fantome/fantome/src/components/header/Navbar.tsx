@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import AboutUsButton from '../buttons/AboutUsButton'
 import BookingButton from '../buttons/BookingButton'
-import { Sparkles, Menu, X } from 'lucide-react'
+import RequestQuoteButton from '../buttons/RequestQuoteButton'
+import { Menu, X } from 'lucide-react'
 import Logo from '../../assets/New Logo.png'
+import { useNavigate } from 'react-router-dom'
 
 interface NavbarProps {
   onBookNow: () => void
   onAboutUs: () => void
+  onRequestQuote: () => void
 }
 
-export default function Navbar({ onBookNow, onAboutUs }: NavbarProps) {
+export default function Navbar({ onBookNow, onAboutUs, onRequestQuote }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = useNavigate();
 
   return (
     <nav className="relative z-20 px-8 py-6 max-w-7xl mx-auto">
@@ -27,6 +31,8 @@ export default function Navbar({ onBookNow, onAboutUs }: NavbarProps) {
         <div className="hidden md:flex items-center gap-4">
           <AboutUsButton onClick={onAboutUs} />
           <BookingButton onClick={onBookNow} />
+          <RequestQuoteButton onClick={() => navigate('/request-quote')} />
+
         </div>
 
         {/* Mobile Hamburger */}
@@ -46,11 +52,11 @@ export default function Navbar({ onBookNow, onAboutUs }: NavbarProps) {
       {/* Mobile Menu */}
       <div
         className={`
-          md:hidden overflow-hidden transition-all duration-300 ease-out
+          md:hidden transition-all duration-300 ease-out
           ${menuOpen ? 'max-h-40 opacity-100 mt-6' : 'max-h-0 opacity-0'}
         `}
       >
-        <div className="flex flex-col gap-4 bg-white rounded-2xl p-6 shadow-lg">
+        <div className="flex flex-col gap-4 bg-transparent rounded-2xl p-6 shadow-md">
           <AboutUsButton
             onClick={() => {
               setMenuOpen(false)
@@ -61,6 +67,12 @@ export default function Navbar({ onBookNow, onAboutUs }: NavbarProps) {
             onClick={() => {
               setMenuOpen(false)
               onBookNow()
+            }}
+          />
+          <RequestQuoteButton
+            onClick={() => {
+              setMenuOpen(false)
+              onRequestQuote()
             }}
           />
         </div>

@@ -19,6 +19,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bookingRoutes from './routes/bookingRoutes.js';
+import requestQuoteRoutes from './routes/requestQuote.js';
 
 const app = express();
 
@@ -75,6 +76,7 @@ mongoose.connect(mongoURI)
 
 // Routes
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/request-quote', requestQuoteRoutes);
 
 app.get('/', (req, res) => {
   res.json({ 
@@ -85,6 +87,8 @@ app.get('/', (req, res) => {
     }
   });
 });
+
+
 
 //Email test route
 app.get('/test-email', async (req, res) => {

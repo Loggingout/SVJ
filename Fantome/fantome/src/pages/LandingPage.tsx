@@ -41,7 +41,7 @@ const LandingPage = () => {
         <div className="relative z-10 flex items-center justify-center min-h-screen px-8">
           <div className="text-center max-w-5xl">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent animate-[fadeIn_1s_ease-in]">
-              High-performance websites for Small and Local Businesses.
+              We build fast, conversion-focused websites that help local businessess get more calls, leads, and customers.
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto">
               Transform your vision into stunning web experiences that captivate and convert
