@@ -34,6 +34,7 @@ const LandingPage = () => {
           <Navbar 
             onBookNow={() => setShowForm(true)} 
             onAboutUs={() => navigate('/about')}
+            onRequestQuote={() => navigate('/request-quote')}
           />
         </div>
 

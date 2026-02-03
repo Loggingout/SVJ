@@ -56,7 +56,7 @@ export default function Navbar({ onBookNow, onAboutUs, onRequestQuote }: NavbarP
           ${menuOpen ? 'max-h-40 opacity-100 mt-6' : 'max-h-0 opacity-0'}
         `}
       >
-        <div className="flex flex-col gap-4 bg-transparent rounded-2xl p-6 shadow-md">
+        <div className="flex flex-col gap-4 bg-transparent rounded-2xl p-6">
           <AboutUsButton
             onClick={() => {
               setMenuOpen(false)

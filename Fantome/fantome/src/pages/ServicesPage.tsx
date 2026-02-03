@@ -1,7 +1,9 @@
 import Navbar from "../components/header/Navbar";
-import ReturnHomeButton from "../components/buttons/ReturnHomeButton";
+import RequestQuoteButton from '../components/buttons/RequestQuoteButton'
 import BookingForm from "../components/forms/BookingForm";
 import DiscoveryDropdown from "../components/dropdowns/DiscoveryDropdown";
+import FAQDropdown from '../components/dropdowns/FAQDropdown';
+import Footer from '../components/footer/Footer';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -16,12 +18,12 @@ import {
 
 export default function ServicesPage() {
   const navigate = useNavigate();
-  const [showReturnHome, setShowReturnHome] = useState(false);
+  const [showRequestQuote, setShowRequestQuote] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowReturnHome(window.scrollY > 400);
+      setShowRequestQuote(window.scrollY > 400);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -86,16 +88,22 @@ export default function ServicesPage() {
         <h3 className="text-4xl font-bold text-center mb-12 mt-24 text-gray-900">
           Website Management
         </h3>
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:scale-105 hover:shadow-xl">
             <Shield className="w-10 h-10 text-gray-600 mb-4" />
             <h4 className="text-2xl font-bold mb-2 text-gray-900">Silver</h4>
             <p className="text-4xl font-bold mb-4 text-gray-900">
               $30<span className="text-lg text-gray-500">/month</span>
             </p>
-            <p className="text-gray-600 mb-4">
-              3 months of professional website management and maintenance
+            <p className="text-black mb-4 font-semibold">
+              No long-term contracts. Cancel anytime.
             </p>
+            <ul className="mt-4 space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li>Hosting & uptime monitoring</li>
+              <li>Security updates</li>
+              <li>Minor content changes</li>
+              <li>Email support</li>
+            </ul>
           </div>
 
           <div className="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-2xl border border-yellow-300 hover:border-yellow-400 transition-all duration-300 hover:scale-105 shadow-xl shadow-yellow-500/10 relative">
@@ -107,20 +115,15 @@ export default function ServicesPage() {
             <p className="text-4xl font-bold mb-4 text-gray-900">
               $60<span className="text-lg text-gray-500">/month</span>
             </p>
-            <p className="text-gray-600 mb-4">
-              6 months of comprehensive website management with priority support
+            <p className="text-black mb-4 font-semibold">
+              No long-term contracts. Cancel anytime.
             </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-purple-300 hover:border-purple-400 transition-all duration-300 hover:scale-105 shadow-xl shadow-purple-500/10">
-            <Sparkles className="w-10 h-10 text-purple-600 mb-4" />
-            <h4 className="text-2xl font-bold mb-2 text-gray-900">Platinum</h4>
-            <p className="text-4xl font-bold mb-4 text-gray-900">
-              $80<span className="text-lg text-gray-500">/month</span>
-            </p>
-            <p className="text-gray-600 mb-4">
-              1 year of premium website management with dedicated support
-            </p>
+            <ul className="mt-4 space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li>Everything in Silver</li>
+              <li>Priority updates</li>
+              <li>Performance monitoring</li>
+              <li>Monthly check-ins</li>
+            </ul>
           </div>
         </div>
 
@@ -136,10 +139,17 @@ export default function ServicesPage() {
                 Boost your online visibility and drive qualified traffic to your
                 website with our proven strategies
               </p>
+              <ul className="mt-4 space-y-2 text-gray-600 text-sm/8 list-disc list-inside">
+                <li>Keyword optimization that targets the search terms your customers are actually using to find businesses like yours</li>
+                <li>Technical SEO improvements to help search engines crawl and rank your site more effectively</li>
+                <li>Content strategy and optimization that answers your audience's questions and positions you as the go-to solutionContent strategy and optimization that answers your audience's questions and positions you as the go-to solution</li>
+                <li>Monthly performance reports showing traffic growth, keyword rankings, and exactly what's driving results</li>
+                <li>Ongoing adjustments based on algorithm changes and competitor activity—your SEO doesn't go stale</li>
+              </ul>
             </div>
             <div className="text-center md:text-right">
               <p className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                $250
+                $140
               </p>
               <p className="text-gray-500 text-lg">/month</p>
             </div>
@@ -147,7 +157,10 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/*Footer*/}
+      {/*FQA Dropdown*/}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <FAQDropdown />
+      </div>
 
       {/* Booking Form Modal */}
       {showForm && (
@@ -155,11 +168,12 @@ export default function ServicesPage() {
       )}
 
       {/* Return Home Button */}
-      {showReturnHome && (
+      {showRequestQuote && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-          <ReturnHomeButton onClick={() => navigate("/")} />
+          <RequestQuoteButton onClick={() => navigate("/request-quote")} />
         </div>
       )}
+      <Footer />
     </div>
   );
 }

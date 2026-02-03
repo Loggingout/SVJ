@@ -75,8 +75,12 @@ export default function RequestQuoteForm() {
   return (
     <div className="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
       <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-        Get a Quote For Your Project !
+        Get a Quote!
       </h2>
+
+      <p className="text-sm text-gray-600 text-center mb-6">
+        Stop thinking about it. Start building it. <span className="font-semibold">-Let's turn your idea into a website that actually brings in the customers.</span>.
+      </p>
 
       <form className="space-y-6" onSubmit={handleSubmit}>
         {/* Name */}
@@ -164,8 +168,9 @@ export default function RequestQuoteForm() {
           type="submit"
           className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-lg hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02]"
         >
-          Request Quote
+          Get My Estimate
         </button>
+        <p className="text-xs text-gray-500 mt-2 text-center font-bold">You'll receive a personalized quote within 24 hours of providing your email. No spam, no pressure🎁</p>
       </form>
     </div>
   );

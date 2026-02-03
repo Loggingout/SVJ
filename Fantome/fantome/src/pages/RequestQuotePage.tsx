@@ -2,6 +2,7 @@ import Navbar from "../components/header/Navbar";
 import RequestQuoteForm from "../components/forms/RequestQuoteForm";
 import ReturnHomeButton from "../components/buttons/ReturnHomeButton";
 import BookingForm from "../components/forms/BookingForm";
+import Footer from '../components/footer/Footer';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -13,7 +14,7 @@ export default function RequestQuotePage() {
   useEffect(() => {
     const handleScroll = () => {
       const scrolled =
-        window.scrollY + window.innerHeight >= document.body.scrollHeight - 200;
+        window.scrollY + window.innerHeight >= document.body.scrollHeight - 120;
 
       setShowReturnHome(scrolled);
     };
@@ -32,7 +33,7 @@ export default function RequestQuotePage() {
         onRequestQuote={() => navigate("/request-quote")}
       />
 
-      <div className="max-w-3xl mx-auto px-6 py-24 ">
+      <div className="max-w-3xl md:h-screen mx-auto px-6 py-24 ">
         <RequestQuoteForm />
       </div>
 
@@ -47,6 +48,7 @@ export default function RequestQuotePage() {
           <ReturnHomeButton onClick={() => navigate("/")} />
         </div>
       )}
+      <Footer />
     </div>
   );
 }

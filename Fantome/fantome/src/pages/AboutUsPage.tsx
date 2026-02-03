@@ -1,20 +1,28 @@
 import Navbar from "../components/header/Navbar";
-import ReturnHomeButton from "../components/buttons/ReturnHomeButton";
+import RequestQuoteButton from "../components/buttons/RequestQuoteButton";
 import BookingForm from "../components/forms/BookingForm";
+import Footer from '../components/footer/Footer';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import StudioImg from "../assets/FT Studio.png";
 import CompanyTeam from "../assets/FTCompanyTeam.png";
-import { Building2, Code2, Users, MapPin, Calendar } from "lucide-react";
+import {
+  Building2,
+  Code2,
+  Users,
+  MapPin,
+  Calendar,
+  ShieldCheck,
+} from "lucide-react";
 
 export default function AboutUsPage() {
   const navigate = useNavigate();
-  const [showReturnHome, setShowReturnHome] = useState(false);
+  const [showRequestQuote, setShowRequestQuote] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowReturnHome(window.scrollY > 400);
+      setShowRequestQuote(window.scrollY > 400);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -45,7 +53,7 @@ export default function AboutUsPage() {
       <section className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
         <div className="space-y-6">
           <div className="flex items-start gap-4">
-            <Building2 className="w-8 h-8 text-purple-600 mt-1" />
+            <Building2 className="w-7 h-6 text-purple-600 mt-1 shrink-0" />
             <div>
               <h3 className="text-2xl font-semibold mb-2">What We Do</h3>
               <p className="text-gray-600">
@@ -57,7 +65,7 @@ export default function AboutUsPage() {
           </div>
 
           <div className="flex items-start gap-4">
-            <Calendar className="w-8 h-8 text-purple-600 mt-1" />
+            <Calendar className="w-6 h-6 text-purple-600 mt-1 shrink-0" />
             <div>
               <h3 className="text-2xl font-semibold mb-2">Founded</h3>
               <p className="text-gray-600">
@@ -68,17 +76,18 @@ export default function AboutUsPage() {
           </div>
 
           <div className="flex items-start gap-4">
-            <Users className="w-8 h-8 text-purple-600 mt-1" />
+            <Users className="w-6 h-6 text-purple-600 mt-1 shrink-0" />
             <div>
               <h3 className="text-2xl font-semibold mb-2">Team</h3>
               <p className="text-gray-600">
-                A focued, one-developer studio - meaning your project get direct attention, faster turnaround, and zero middleman.
+                A focued, one-developer studio - meaning your project get direct
+                attention, faster turnaround, and zero middleman.
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-4">
-            <MapPin className="w-8 h-8 text-purple-600 mt-1" />
+            <MapPin className="w-6 h-6 text-purple-600 mt-1 shrink-0" />
             <div>
               <h3 className="text-2xl font-semibold mb-2">Location</h3>
               <p className="text-gray-600">
@@ -86,6 +95,19 @@ export default function AboutUsPage() {
                 clients locally and nationwide.
               </p>
             </div>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-4">
+          <ShieldCheck className="w-6 h-6 shrink-0 text-purple-600 mt-1" />
+          <div>
+            <h3 className="text-2xl font-semibold mb-2">Why Trust Us?</h3>
+            <p className="text-gray-600">
+              We don't cut corners. You'll get clean code that's built to last,
+              straight communication throughout the process, and solutions that
+              actually scale with your business. No unnecessary complexity, no
+              hidden gotchas—just honest work that performs.
+            </p>
           </div>
         </div>
 
@@ -115,8 +137,8 @@ export default function AboutUsPage() {
               Clean Code
             </h4>
             <p className="text-gray-200">
-              Built with modern frameworks and best practices for performance,
-              maintainability, and scalability.
+              Built to grow with your business, load fast for your customers,
+              and save you money on future updates.
             </p>
           </div>
 
@@ -134,8 +156,8 @@ export default function AboutUsPage() {
               Client-Focused
             </h4>
             <p className="text-gray-200">
-              Every project is handled with direct collaboration and transparent
-              communication.
+              You'll work directly with us—no middlemen, no surprises, just
+              clear communication from start to finish.
             </p>
           </div>
 
@@ -153,8 +175,8 @@ export default function AboutUsPage() {
               Built to Grow
             </h4>
             <p className="text-gray-200">
-              Websites designed to evolve as your business grows — not rebuilt
-              from scratch.
+              Built to grow with you. When your business changes, your website
+              adapts—no expensive rebuilds needed.
             </p>
           </div>
         </div>
@@ -185,11 +207,12 @@ export default function AboutUsPage() {
       )}
 
       {/* Return Home Button */}
-      {showReturnHome && (
+      {showRequestQuote && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-          <ReturnHomeButton onClick={() => navigate("/")} />
+          <RequestQuoteButton onClick={() => navigate("/request-quote")} />
         </div>
       )}
+      <Footer />
     </div>
   );
 }
