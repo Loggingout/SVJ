@@ -1,16 +1,17 @@
-import Booking from '../models/Booking.js';
-import emailService from '../services/emailService.js';
+import Booking from "../models/Booking.js";
+import emailService from "../services/emailService.js";
 
 export const createBooking = async (req, res) => {
   try {
-    console.log('📩 Received booking request:', req.body);
+    console.log("📩 Received booking request:", req.body);
 
     // Validate required fields
     const { businessName, productIdea, estimatedBudget } = req.body;
 
     if (!businessName || !productIdea || !estimatedBudget) {
       return res.status(400).json({
-        error: 'Missing required fields: businessName, productIdea, and estimatedBudget are required'
+        error:
+          "Missing required fields: businessName, productIdea, and estimatedBudget are required",
       });
     }
 
@@ -18,11 +19,11 @@ export const createBooking = async (req, res) => {
     const booking = new Booking({
       businessName,
       productIdea,
-      estimatedBudget
+      estimatedBudget,
     });
 
     await booking.save();
-    console.log('✅ Booking saved successfully:', booking._id);
+    console.log("✅ Booking saved successfully:", booking._id);
 
     /**
      * Send email notification
@@ -31,29 +32,27 @@ export const createBooking = async (req, res) => {
      */
     try {
       await emailService.sendBookingNotification({
-        businessName: booking.businessName,
-        productIdea: booking.productIdea,
-        estimatedBudget: booking.estimatedBudget,
-        createdAt: booking.createdAt,
-        _id: booking._id
+        name: booking.businessName,
+        email: booking.email || "", // optional
+        service: booking.productIdea,
+        date: booking.createdAt,
       });
 
-      console.log('📨 Booking email sent successfully');
+      console.log("📨 Booking email sent successfully");
     } catch (emailError) {
-      console.error('❌ Email notification failed:', emailError.message);
+      console.error("❌ Email notification failed:", emailError.message);
     }
 
     // Respond immediately after critical work is done
     res.status(201).json({
-      message: 'Booking submitted successfully',
-      booking
+      message: "Booking submitted successfully",
+      booking,
     });
-
   } catch (error) {
-    console.error('❌ Error creating booking:', error);
+    console.error("❌ Error creating booking:", error);
     res.status(500).json({
-      error: 'Failed to create booking',
-      details: error.message
+      error: "Failed to create booking",
+      details: error.message,
     });
   }
 };
@@ -63,10 +62,10 @@ export const getAllBookings = async (req, res) => {
     const bookings = await Booking.find().sort({ createdAt: -1 });
     res.json(bookings);
   } catch (error) {
-    console.error('❌ Error fetching bookings:', error);
+    console.error("❌ Error fetching bookings:", error);
     res.status(500).json({
-      error: 'Failed to fetch bookings',
-      details: error.message
+      error: "Failed to fetch bookings",
+      details: error.message,
     });
   }
 };
@@ -76,15 +75,15 @@ export const getBookingById = async (req, res) => {
     const booking = await Booking.findById(req.params.id);
 
     if (!booking) {
-      return res.status(404).json({ error: 'Booking not found' });
+      return res.status(404).json({ error: "Booking not found" });
     }
 
     res.json(booking);
   } catch (error) {
-    console.error('❌ Error fetching booking:', error);
+    console.error("❌ Error fetching booking:", error);
     res.status(500).json({
-      error: 'Failed to fetch booking',
-      details: error.message
+      error: "Failed to fetch booking",
+      details: error.message,
     });
   }
 };

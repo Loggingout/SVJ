@@ -1,40 +1,26 @@
-import fetch from "node-fetch";
+import sgMail from '@sendgrid/mail';
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 class EmailService {
   async sendEmail({ to, subject, html }) {
     if (!process.env.SENDGRID_API_KEY || !process.env.EMAIL_FROM) {
-      console.error("❌ SendGrid API key or FROM email is missing!");
-      throw new Error("Email configuration missing");
+      console.error('❌ SendGrid API key or FROM email is missing!');
+      throw new Error('Email configuration missing');
     }
 
+    const msg = {
+      to,
+      from: process.env.EMAIL_FROM, // Verified sender
+      subject,
+      html,
+    };
+
     try {
-      const response = await fetch("https://api.unosend.com/v1/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: process.env.EMAIL_FROM,
-          to,
-          subject,
-          html,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("❌ UnoSend Error:", data);
-        throw new Error(
-          data?.message || "Failed to send email via UnoSend"
-        );
-      }
-
-      console.log("📨 Email sent via UnoSend:", data.id || "No ID returned");
-      return data;
+      await sgMail.send(msg);
+      console.log(`📨 Email sent via SendGrid to ${to}`);
     } catch (err) {
-      console.error("❌ Email sending failed:", err.message);
+      console.error('❌ SendGrid email failed:', err.response?.body || err.message);
       throw err;
     }
   }
@@ -44,7 +30,7 @@ class EmailService {
   // =========================
   async sendBookingNotification(bookingData) {
     return this.sendEmail({
-      to: process.env.EMAIL_TO, // Your admin email
+      to: process.env.EMAIL_TO, // Admin email
       subject: `📅 New Booking from ${bookingData.name}`,
       html: `
         <h2>New Booking Request</h2>
@@ -62,7 +48,7 @@ class EmailService {
   async sendQuoteNotification(quoteData) {
     return this.sendEmail({
       to: process.env.EMAIL_TO, // Admin
-      subject: "🚀 New Quote Request",
+      subject: '🚀 New Quote Request',
       html: `
         <h2>New Quote Request</h2>
         <p><strong>Name:</strong> ${quoteData.name}</p>
@@ -79,13 +65,13 @@ class EmailService {
   // =========================
   async sendQuoteConfirmation(quoteData) {
     if (!quoteData.email) {
-      console.warn("Client email missing, skipping confirmation");
+      console.warn('Client email missing, skipping confirmation');
       return;
     }
 
     return this.sendEmail({
       to: quoteData.email,
-      subject: "We received your quote request 👋",
+      subject: 'We received your quote request 👋',
       html: `
         <h2>Thanks for reaching out, ${quoteData.name}!</h2>
         <p>We've received your request for a <strong>${quoteData.websiteType}</strong>.</p>
