@@ -3,7 +3,7 @@ import AboutUsButton from '../buttons/AboutUsButton'
 import BookingButton from '../buttons/BookingButton'
 import RequestQuoteButton from '../buttons/RequestQuoteButton'
 import { Menu, X } from 'lucide-react'
-import Logo from '../../assets/New Logo.png'
+import Logo from '../../../public/New Logo.png'
 import { useNavigate } from 'react-router-dom'
 
 interface NavbarProps {

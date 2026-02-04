@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Sparkles } from 'lucide-react';
+import Logo from '../../../public/New Logo.png'
 
 interface BookingFormProps {
   onClose?: () => void;
@@ -84,8 +85,8 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
     <div className={`bg-gradient-to-br from-slate-900 to-purple-900 p-8 rounded-2xl ${isModal ? 'border border-purple-500/30 shadow-2xl' : ''}`}>
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
-          <Sparkles className="w-6 h-6 text-purple-400" />
-          <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <img src={Logo} alt="Company Logo" className="h-12 w-12  rounded-xl" />
+          <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Let's Build Together
           </h3>
         </div>
@@ -164,6 +165,8 @@ const BookingForm = ({ onClose, isModal = false }: BookingFormProps) => {
             required
           />
         </div>
+
+        <p className="text-sm text-white font-semibold mt-2 text-center">You'll receive a confirmation email shortly after submission.</p>
         
         <button
           onClick={handleSubmit}

@@ -1,34 +1,33 @@
-import express from 'express'
+import express from 'express';
+import emailService from '../services/emailService.js';
 
-const router = express.Router()
+const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const {
-      name,
-      email,
-      company,
-      budget,
-      message,
-      services
-    } = req.body
+    const { name, email, websiteType, pages, estimatedPrice } = req.body;
 
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: 'Missing required fields' })
+    // Validate required fields
+    if (!name || !email || !websiteType || pages == null || estimatedPrice == null) {
+      return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // TODO:
-    // - Save to DB
-    // - Send email (Resend / Nodemailer)
-    // - Send Slack/Discord notification
+    // Send email to you + client via UnoSend
+    await emailService.sendQuoteNotification({
+      name,
+      email,
+      websiteType,
+      pages,
+      estimatedPrice
+    });
 
-    console.log('New quote request:', req.body)
+    console.log('✅ New quote request:', req.body);
 
-    res.status(200).json({ success: true })
+    res.status(200).json({ success: true });
   } catch (err) {
-    console.error(err)
-    res.status(500).json({ error: 'Server error' })
+    console.error('❌ Request quote error:', err);
+    res.status(500).json({ error: 'Server error' });
   }
-})
+});
 
-export default router
+export default router;
