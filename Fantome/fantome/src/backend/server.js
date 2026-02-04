@@ -31,25 +31,32 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   'http://fantometechnologies.com',
+  'https://fantometechnologies.com',
+  'https://www.fantometechnologies.com', // make sure to include www
 ];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  console.log('Request Origin:', origin); // helpful for debugging
+
+  if (!origin || allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin || '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization,Accept');
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      console.log('❌ Blocked by CORS:', origin);
-      callback(new Error('Not allowed by CORS'));
+    if (req.method === 'OPTIONS') {
+      // preflight request
+      return res.sendStatus(200);
     }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  exposedHeaders: ['Content-Type'],
-  optionsSuccessStatus: 200
-}));
+
+    next();
+  } else {
+    console.log('❌ Blocked by CORS:', origin);
+    return res.status(403).send('CORS blocked');
+  }
+});
+
 
 app.use(express.json());
 
