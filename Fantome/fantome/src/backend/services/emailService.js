@@ -16,24 +16,20 @@ class EmailService {
   }
 
   async sendEmail({ to, subject, html }) {
-    if (!to || !subject || !html) {
-      throw new Error("Missing required email fields: to, subject, html");
+    const { data, error } = await this.resend.emails.send({
+      from: this.from,
+      to,
+      subject,
+      html,
+    });
+
+    if (error) {
+      console.error("❌ Resend error:", error);
+      throw error;
     }
 
-    try {
-      const message = await this.getResend().emails.send({
-        from: this.from,
-        to,
-        subject,
-        html,
-      });
-
-      console.log("📨 Email sent via Resend:", message);
-      return message;
-    } catch (err) {
-      console.error("❌ Resend email failed:", err);
-      throw err;
-    }
+    console.log("📨 Email sent. ID:", data.id);
+    return data;
   }
 
   async sendBookingNotification({ name, email, service, date }) {
@@ -50,7 +46,13 @@ class EmailService {
     });
   }
 
-  async sendQuoteNotification({ name, email, websiteType, pages, estimatedPrice }) {
+  async sendQuoteNotification({
+    name,
+    email,
+    websiteType,
+    pages,
+    estimatedPrice,
+  }) {
     return this.sendEmail({
       to: process.env.EMAIL_TO,
       subject: "🚀 New Quote Request",
