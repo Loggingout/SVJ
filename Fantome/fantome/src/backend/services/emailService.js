@@ -1,18 +1,27 @@
 import { Resend } from "resend";
 
 class EmailService {
-  constructor() {
-    if (!process.env.RESEND_API_KEY) {
-      throw new Error("Resend API key is missing in .env");
-    }
+  from = process.env.EMAIL_FROM || "onboarding@resend.dev";
+  resend;
 
-    this.resend = new Resend(process.env.RESEND_API_KEY);
-    this.from = process.env.EMAIL_FROM;
+  // Lazy init Resend
+  getResend() {
+    if (!this.resend) {
+      if (!process.env.RESEND_API_KEY) {
+        throw new Error("Resend API key is missing in .env");
+      }
+      this.resend = new Resend(process.env.RESEND_API_KEY);
+    }
+    return this.resend;
   }
 
   async sendEmail({ to, subject, html }) {
+    if (!to || !subject || !html) {
+      throw new Error("Missing required email fields: to, subject, html");
+    }
+
     try {
-      const message = await this.resend.emails.send({
+      const message = await this.getResend().emails.send({
         from: this.from,
         to,
         subject,
@@ -27,52 +36,43 @@ class EmailService {
     }
   }
 
-  // =========================
-  // Booking notification (admin)
-  // =========================
-  async sendBookingNotification(bookingData) {
+  async sendBookingNotification({ name, email, service, date }) {
     return this.sendEmail({
       to: process.env.EMAIL_TO,
-      subject: `📅 New Booking from ${bookingData.name}`,
+      subject: `📅 New Booking from ${name}`,
       html: `
         <h2>New Booking Request</h2>
-        <p><strong>Name:</strong> ${bookingData.name}</p>
-        <p><strong>Email:</strong> ${bookingData.email || "N/A"}</p>
-        <p><strong>Service:</strong> ${bookingData.service}</p>
-        <p><strong>Date:</strong> ${bookingData.date}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email || "N/A"}</p>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Date:</strong> ${date}</p>
       `,
     });
   }
 
-  // =========================
-  // Request quote notification (admin)
-  // =========================
-  async sendQuoteNotification(quoteData) {
+  async sendQuoteNotification({ name, email, websiteType, pages, estimatedPrice }) {
     return this.sendEmail({
       to: process.env.EMAIL_TO,
       subject: "🚀 New Quote Request",
       html: `
         <h2>New Quote Request</h2>
-        <p><strong>Name:</strong> ${quoteData.name}</p>
-        <p><strong>Email:</strong> ${quoteData.email}</p>
-        <p><strong>Website Type:</strong> ${quoteData.websiteType}</p>
-        <p><strong>Pages:</strong> ${quoteData.pages}</p>
-        <p><strong>Estimated Price:</strong> $${quoteData.estimatedPrice}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Website Type:</strong> ${websiteType}</p>
+        <p><strong>Pages:</strong> ${pages}</p>
+        <p><strong>Estimated Price:</strong> $${estimatedPrice}</p>
       `,
     });
   }
 
-  // =========================
-  // Request quote confirmation (client)
-  // =========================
-  async sendQuoteConfirmation(quoteData) {
+  async sendQuoteConfirmation({ name, email, websiteType, estimatedPrice }) {
     return this.sendEmail({
-      to: quoteData.email,
+      to: email,
       subject: "We received your quote request 👋",
       html: `
-        <h2>Thanks for reaching out, ${quoteData.name}!</h2>
-        <p>We've received your request for a <strong>${quoteData.websiteType}</strong>.</p>
-        <p><strong>Estimated Cost:</strong> $${quoteData.estimatedPrice}</p>
+        <h2>Thanks for reaching out, ${name}!</h2>
+        <p>We've received your request for a <strong>${websiteType}</strong>.</p>
+        <p><strong>Estimated Cost:</strong> $${estimatedPrice}</p>
         <p>We'll review your project and get back to you within 24 hours.</p>
         <br/>
         <p>— Fantome Technologies</p>
@@ -81,4 +81,5 @@ class EmailService {
   }
 }
 
+// Export instance directly, safe for import even if API key is missing
 export default new EmailService();
