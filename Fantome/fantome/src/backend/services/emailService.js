@@ -55,7 +55,7 @@ class EmailService {
       to: process.env.EMAIL_TO,
       subject: "🚀 New Quote Request",
       html: `
-        <h2>New Quote Request</h2>
+        <h2>New Quote Request 🆕</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Website Type:</strong> ${websiteType}</p>

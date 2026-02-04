@@ -7,8 +7,8 @@ export default function RequestQuoteForm() {
   const [email, setEmail] = useState("");
 
   const basePrices: Record<string, number> = {
-    "Landing Page": 200,
-    "Business Website": 500,
+    "Landing Page": 300,
+    "Business Website": 650,
     "Website Redesign": 300,
   };
 
