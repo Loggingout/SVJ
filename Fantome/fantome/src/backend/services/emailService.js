@@ -2,58 +2,101 @@ import { Resend } from "resend";
 
 class EmailService {
   constructor() {
-    if (!process.env.RESEND_API_KEY) {
-      throw new Error("Resend API key is missing in .env");
-    }
+    this.apiKey = process.env.RESEND_API_KEY || null;
+    this.from = process.env.EMAIL_FROM || "no-reply@example.com";
 
-    this.resend = new Resend(process.env.RESEND_API_KEY);
-    this.from = "Fantome Technologies <onboarding@resend.dev>";
+    if (!this.apiKey) {
+      console.warn(
+        "⚠️ Resend API key is missing. Emails will not be sent!"
+      );
+      this.resend = null;
+    } else {
+      this.resend = new Resend(this.apiKey);
+    }
   }
 
   async sendEmail({ to, subject, html }) {
-    const { data, error } = await this.resend.emails.send({
-      from: this.from,
-      to,
-      subject,
-      html,
-    });
-
-    if (error) {
-      console.error("❌ Resend error:", error);
-      throw error;
+    if (!this.resend) {
+      console.warn(
+        "⚠️ Attempted to send email but Resend is not configured. To:", to
+      );
+      return null;
     }
 
-    console.log("📨 Email sent. ID:", data.id);
-    return data;
+    try {
+      const message = await this.resend.emails.send({
+        from: this.from,
+        to,
+        subject,
+        html,
+      });
+
+      console.log("📨 Email sent via Resend:", message);
+      return message;
+    } catch (err) {
+      console.error("❌ Resend email failed:", err);
+      throw err;
+    }
   }
 
-  async sendQuoteNotification(payload) {
+  // =========================
+  // Booking notification (admin)
+  // =========================
+  async sendBookingNotification(bookingData) {
     return this.sendEmail({
-      to: "someonetothinkabout@gmail.com",
-      subject: "📩 New Quote Request",
+      to: process.env.EMAIL_TO,
+      subject: `📅 New Booking from ${bookingData.name}`,
       html: `
-        <p><strong>Name:</strong> ${payload.name}</p>
-        <p><strong>Email:</strong> ${payload.email}</p>
-        <p><strong>Website Type:</strong> ${payload.websiteType}</p>
-        <p><strong>Pages:</strong> ${payload.pages}</p>
-        <p><strong>Estimate:</strong> $${payload.estimatedPrice}</p>
+        <h2>New Booking Request</h2>
+        <p><strong>Name:</strong> ${bookingData.name}</p>
+        <p><strong>Email:</strong> ${bookingData.email || "N/A"}</p>
+        <p><strong>Service:</strong> ${bookingData.service}</p>
+        <p><strong>Date:</strong> ${bookingData.date}</p>
       `,
     });
   }
 
-  async sendQuoteConfirmation(payload) {
+  // =========================
+  // Request quote notification (admin)
+  // =========================
+  async sendQuoteNotification(quoteData) {
     return this.sendEmail({
-      to: payload.email,
-      subject: "We received your quote request 🚀",
+      to: process.env.EMAIL_TO,
+      subject: "🚀 New Quote Request",
       html: `
-        <p>Hey ${payload.name},</p>
-        <p>Thanks for reaching out! We’ve received your quote request and will be in touch shortly.</p>
-        <p><strong>Estimated price:</strong> $${payload.estimatedPrice}</p>
-        <p>– Fantome Technologies</p>
+        <h2>New Quote Request</h2>
+        <p><strong>Name:</strong> ${quoteData.name}</p>
+        <p><strong>Email:</strong> ${quoteData.email}</p>
+        <p><strong>Website Type:</strong> ${quoteData.websiteType}</p>
+        <p><strong>Pages:</strong> ${quoteData.pages}</p>
+        <p><strong>Estimated Price:</strong> $${quoteData.estimatedPrice}</p>
+      `,
+    });
+  }
+
+  // =========================
+  // Request quote confirmation (client)
+  // =========================
+  async sendQuoteConfirmation(quoteData) {
+    if (!quoteData.email) {
+      console.warn("⚠️ Client email missing, skipping confirmation");
+      return null;
+    }
+
+    return this.sendEmail({
+      to: quoteData.email,
+      subject: "We received your quote request 👋",
+      html: `
+        <h2>Thanks for reaching out, ${quoteData.name}!</h2>
+        <p>We've received your request for a <strong>${quoteData.websiteType}</strong>.</p>
+        <p><strong>Estimated Cost:</strong> $${quoteData.estimatedPrice}</p>
+        <p>We'll review your project and get back to you within 24 hours.</p>
+        <br/>
+        <p>— Fantome Technologies</p>
       `,
     });
   }
 }
 
-// 👇 THIS is the key line
-export default new EmailService();
+// Export the class itself — no `new` here
+export default EmailService;
