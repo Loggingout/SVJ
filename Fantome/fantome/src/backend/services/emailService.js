@@ -1,18 +1,13 @@
 import { Resend } from "resend";
 
 class EmailService {
-  from = process.env.EMAIL_FROM || "onboarding@resend.dev";
-  resend;
-
-  // Lazy init Resend
-  getResend() {
-    if (!this.resend) {
-      if (!process.env.RESEND_API_KEY) {
-        throw new Error("Resend API key is missing in .env");
-      }
-      this.resend = new Resend(process.env.RESEND_API_KEY);
+  constructor() {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("Resend API key is missing in .env");
     }
-    return this.resend;
+
+    this.resend = new Resend(process.env.RESEND_API_KEY);
+    this.from = "Fantome Technologies <onboarding@resend.dev>";
   }
 
   async sendEmail({ to, subject, html }) {
@@ -32,56 +27,33 @@ class EmailService {
     return data;
   }
 
-  async sendBookingNotification({ name, email, service, date }) {
+  async sendQuoteNotification(payload) {
     return this.sendEmail({
-      to: process.env.EMAIL_TO,
-      subject: `📅 New Booking from ${name}`,
+      to: "someonetothinkabout@gmail.com",
+      subject: "📩 New Quote Request",
       html: `
-        <h2>New Booking Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email || "N/A"}</p>
-        <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Name:</strong> ${payload.name}</p>
+        <p><strong>Email:</strong> ${payload.email}</p>
+        <p><strong>Website Type:</strong> ${payload.websiteType}</p>
+        <p><strong>Pages:</strong> ${payload.pages}</p>
+        <p><strong>Estimate:</strong> $${payload.estimatedPrice}</p>
       `,
     });
   }
 
-  async sendQuoteNotification({
-    name,
-    email,
-    websiteType,
-    pages,
-    estimatedPrice,
-  }) {
+  async sendQuoteConfirmation(payload) {
     return this.sendEmail({
-      to: process.env.EMAIL_TO,
-      subject: "🚀 New Quote Request",
+      to: payload.email,
+      subject: "We received your quote request 🚀",
       html: `
-        <h2>New Quote Request 🆕</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Website Type:</strong> ${websiteType}</p>
-        <p><strong>Pages:</strong> ${pages}</p>
-        <p><strong>Estimated Price:</strong> $${estimatedPrice}</p>
-      `,
-    });
-  }
-
-  async sendQuoteConfirmation({ name, email, websiteType, estimatedPrice }) {
-    return this.sendEmail({
-      to: email,
-      subject: "We received your quote request 👋",
-      html: `
-        <h2>Thanks for reaching out, ${name}!</h2>
-        <p>We've received your request for a <strong>${websiteType}</strong>.</p>
-        <p><strong>Estimated Cost:</strong> $${estimatedPrice}</p>
-        <p>We'll review your project and get back to you within 24 hours.</p>
-        <br/>
-        <p>— Fantome Technologies</p>
+        <p>Hey ${payload.name},</p>
+        <p>Thanks for reaching out! We’ve received your quote request and will be in touch shortly.</p>
+        <p><strong>Estimated price:</strong> $${payload.estimatedPrice}</p>
+        <p>– Fantome Technologies</p>
       `,
     });
   }
 }
 
-// Export instance directly, safe for import even if API key is missing
+// 👇 THIS is the key line
 export default new EmailService();
