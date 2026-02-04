@@ -2,8 +2,8 @@ import fetch from "node-fetch";
 
 class EmailService {
   async sendEmail({ to, subject, html }) {
-    if (!process.env.UNOSEND_API_KEY || !process.env.EMAIL_FROM) {
-      console.error("❌ UnoSend API key or FROM email is missing!");
+    if (!process.env.SENDGRID_API_KEY || !process.env.EMAIL_FROM) {
+      console.error("❌ SendGrid API key or FROM email is missing!");
       throw new Error("Email configuration missing");
     }
 
@@ -11,7 +11,7 @@ class EmailService {
       const response = await fetch("https://api.unosend.com/v1/emails", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.UNOSEND_API_KEY}`,
+          Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
