@@ -3,7 +3,7 @@ import { Resend } from "resend";
 class EmailService {
   constructor() {
     this.apiKey = process.env.RESEND_API_KEY || null;
-    this.from = process.env.EMAIL_FROM || "no-reply@example.com";
+    this.from = process.env.EMAIL_FROM || "onboarding@resend.dev";
 
     if (!this.apiKey) {
       console.warn(
@@ -98,5 +98,5 @@ class EmailService {
   }
 }
 
-// Export the class itself — no `new` here
+
 export default new EmailService();
