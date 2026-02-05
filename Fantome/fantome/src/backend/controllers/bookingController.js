@@ -6,9 +6,9 @@ export const createBooking = async (req, res) => {
     console.log("📩 Received booking request:", req.body);
 
     // Validate required fields
-    const { businessName, productIdea, estimatedBudget } = req.body;
+    const { businessName, email, productIdea, estimatedBudget } = req.body;
 
-    if (!businessName || !productIdea || !estimatedBudget) {
+    if (!businessName || !productIdea || !estimatedBudget || !email) {
       return res.status(400).json({
         error:
           "Missing required fields: businessName, productIdea, and estimatedBudget are required",
@@ -18,8 +18,9 @@ export const createBooking = async (req, res) => {
     // Save to database
     const booking = new Booking({
       businessName,
+      email,
       productIdea,
-      estimatedBudget,
+      estimatedBudget
     });
 
     await booking.save();
