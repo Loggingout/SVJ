@@ -8,7 +8,7 @@ export default function QuestionsDropdown() {
         {
             id: 'timeline',
             question: 'How long does a typical project take?',
-            answer: `Most projects take 3-4 weeks from start to launch, depending on complexity. We'll give you a clear timeline during our discovery phase and keep you updated throughout.`
+            answer: `Most projects take 2-3 weeks from start to launch, depending on complexity. We'll give you a clear timeline during our discovery phase and keep you updated throughout.`
         },
         {
             id: 'cost',

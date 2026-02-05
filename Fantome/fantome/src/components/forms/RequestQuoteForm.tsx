@@ -1,10 +1,12 @@
 import { useState } from "react";
+import RequestQuoteModal from "../modal/requestQuoteModal";
 
 export default function RequestQuoteForm() {
   const [websiteType, setWebsiteType] = useState("");
   const [pages, setPages] = useState<number | "">("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [modalOpen, setModalOpen] = useState(false); // modal state
 
   const basePrices: Record<string, number> = {
     "Landing Page": 300,
@@ -18,11 +20,9 @@ export default function RequestQuoteForm() {
     websiteType && pages
       ? (() => {
           const base = basePrices[websiteType] + Number(pages) * pricePerPage;
-
           const variability = base * 0.05;
           const randomAdjustment =
             Math.random() * (variability * 2) - variability;
-
           return Math.round(base + randomAdjustment);
         })()
       : null;
@@ -51,13 +51,15 @@ export default function RequestQuoteForm() {
             pages,
             estimatedPrice,
           }),
-        },
+        }
       );
 
       const data = await response.json();
 
       if (response.ok) {
-        alert("Your quote request has been submitted!");
+        // Open modal instead of alert
+        setModalOpen(true);
+
         // Reset form
         setName("");
         setEmail("");
@@ -79,7 +81,12 @@ export default function RequestQuoteForm() {
       </h2>
 
       <p className="text-sm text-gray-600 text-center mb-6">
-        Stop thinking about it. Start building it. <span className="font-semibold">-Let's turn your idea into a website that actually brings in the customers.</span>.
+        Stop thinking about it. Start building it.{" "}
+        <span className="font-semibold">
+          -Let's turn your idea into a website that actually brings in the
+          customers.
+        </span>
+        .
       </p>
 
       <form className="space-y-6" onSubmit={handleSubmit}>
@@ -170,8 +177,14 @@ export default function RequestQuoteForm() {
         >
           Get My Estimate
         </button>
-        <p className="text-xs text-gray-500 mt-2 text-center font-bold">You'll receive a personalized quote within 24 hours of providing your email. No spam, no pressure🎁</p>
+        <p className="text-xs text-gray-500 mt-2 text-center font-bold">
+          You'll receive a personalized quote within 24 hours of providing your
+          email. No spam, no pressure🎁
+        </p>
       </form>
+
+      {/* Request Quote Modal */}
+      <RequestQuoteModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

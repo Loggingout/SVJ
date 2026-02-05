@@ -1,9 +1,10 @@
 import Navbar from "../components/header/Navbar";
-import RequestQuoteButton from '../components/buttons/RequestQuoteButton'
+import RequestQuoteButton from "../components/buttons/RequestQuoteButton";
 import BookingForm from "../components/forms/BookingForm";
 import DiscoveryDropdown from "../components/dropdowns/DiscoveryDropdown";
-import FAQDropdown from '../components/dropdowns/FAQDropdown';
-import Footer from '../components/footer/Footer';
+import FAQDropdown from "../components/dropdowns/FAQDropdown";
+import Footer from "../components/footer/Footer";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -135,16 +136,32 @@ export default function ServicesPage() {
               <h3 className="text-3xl font-bold mb-3 text-gray-900">
                 Website Traffic Enhancement
               </h3>
-              <p className="text-gray-600 text-lg">
-                Boost your online visibility and drive qualified traffic to your
-                website with our proven strategies
+              <p className="text-black mb-4 font-semibold">
+                No long-term contracts. Cancel anytime.
               </p>
               <ul className="mt-4 space-y-2 text-gray-600 text-sm/8 list-disc list-inside">
-                <li>Keyword optimization that targets the search terms your customers are actually using to find businesses like yours</li>
-                <li>Technical SEO improvements to help search engines crawl and rank your site more effectively</li>
-                <li>Content strategy and optimization that answers your audience's questions and positions you as the go-to solutionContent strategy and optimization that answers your audience's questions and positions you as the go-to solution</li>
-                <li>Monthly performance reports showing traffic growth, keyword rankings, and exactly what's driving results</li>
-                <li>Ongoing adjustments based on algorithm changes and competitor activity—your SEO doesn't go stale</li>
+                <li>
+                  Keyword optimization that targets the search terms your
+                  customers are actually using to find businesses like yours
+                </li>
+                <li>
+                  Technical SEO improvements to help search engines crawl and
+                  rank your site more effectively
+                </li>
+                <li>
+                  Content strategy and optimization that answers your audience's
+                  questions and positions you as the go-to solutionContent
+                  strategy and optimization that answers your audience's
+                  questions and positions you as the go-to solution
+                </li>
+                <li>
+                  Monthly performance reports showing traffic growth, keyword
+                  rankings, and exactly what's driving results
+                </li>
+                <li>
+                  Ongoing adjustments based on algorithm changes and competitor
+                  activity—your SEO doesn't go stale
+                </li>
               </ul>
             </div>
             <div className="text-center md:text-right">
@@ -169,9 +186,14 @@ export default function ServicesPage() {
 
       {/* Return Home Button */}
       {showRequestQuote && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <motion.div
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <RequestQuoteButton onClick={() => navigate("/request-quote")} />
-        </div>
+        </motion.div>
       )}
       <Footer />
     </div>

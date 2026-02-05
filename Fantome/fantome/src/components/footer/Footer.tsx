@@ -1,4 +1,5 @@
-import Logo from '../../../public/New Logo.png'
+import { Link } from "react-router-dom";
+import Logo from '../../../public/New Logo.png';
 
 export default function Footer() {
   return (
@@ -25,18 +26,37 @@ export default function Footer() {
             <div>
               <h4 className="font-semibold text-gray-900 mb-3">Company</h4>
               <ul className="space-y-2 text-gray-600">
-                <li className="hover:text-purple-600 cursor-pointer">About</li>
-                <li className="hover:text-purple-600 cursor-pointer">Services</li>
-                <li className="hover:text-purple-600 cursor-pointer">Contact</li>
+                <li>
+                  <Link to="/about" className="hover:text-purple-600">About</Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-purple-600">Services</Link>
+                </li>
+                <li>
+                  <Link to="/FourOFour" className="hover:text-purple-600">Contact</Link>
+                </li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold text-gray-900 mb-3">Services</h4>
               <ul className="space-y-2 text-gray-600">
-                <li>Web Development</li>
-                <li>Landing Pages</li>
-                <li>Website Redesigns</li>
+                <li>
+                  <Link to="/services" className="hover:text-purple-600">Web Development</Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-purple-600">Landing Pages</Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-purple-600">Website Redesigns</Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-3">Email</h4>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link to="mailto:fantometechnologies@gmail.com" className="hover:text-purple-600">fantometechnologies@gmail.com</Link></li>
               </ul>
             </div>
           </div>
@@ -51,5 +71,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

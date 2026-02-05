@@ -33,7 +33,7 @@ export const createBooking = async (req, res) => {
     try {
       await emailService.sendBookingNotification({
         name: booking.businessName,
-        email: booking.email || "", // optional
+        email: booking.email, 
         service: booking.productIdea,
         date: booking.createdAt,
       });

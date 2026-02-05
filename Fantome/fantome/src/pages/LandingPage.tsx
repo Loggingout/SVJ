@@ -1,4 +1,4 @@
-{/**FOOTER IS NEEDED WITH TERMS AND POLICY PAGES, BUSINESS EMAIL AND HOURS NEED TO BE DISPLAYED. */}
+/**Landing Page */
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Sparkles, Code, Palette, TrendingUp, Shield, Award, Zap } from 'lucide-react';
@@ -6,17 +6,34 @@ import BookingForm from '../components/forms/BookingForm';
 import Navbar from '../components/header/Navbar';
 import HeroImage from '../assets/Dashboard display (3).png'
 import ServiceButton from '../components/buttons/ServicesButton';
- 
+import { motion } from 'framer-motion';
+
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
+  // Animation variants for hero content
+  const heroVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.3, duration: 0.8, ease: 'easeOut' },
+    }),
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white">
+    <motion.div
+      className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-white"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       {/* Full-Page Hero Section */}
       <div className="relative min-h-screen overflow-hidden">
         {/* Hero Background Image */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 blur">
           <img
             src={HeroImage}
             alt="Hero Background"
@@ -41,13 +58,32 @@ const LandingPage = () => {
         {/* Centered Hero Content */}
         <div className="relative z-10 flex items-center justify-center min-h-screen px-8">
           <div className="text-center max-w-5xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent animate-[fadeIn_1s_ease-in]">
-              We build fast, conversion-focused websites that help local businessess get more calls, leads, and customers.
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto">
+            <motion.h1
+              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent"
+              variants={heroVariants}
+              custom={0} // first element
+              initial="hidden"
+              animate="visible"
+            >
+              We build fast, conversion-focused websites that help local businesses get more calls, leads, and customers.
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto"
+              variants={heroVariants}
+              custom={1} // second element
+              initial="hidden"
+              animate="visible"
+            >
               Transform your vision into stunning web experiences that captivate and convert
-            </p>
-            <ServiceButton onClick={() => navigate('/services')} />
+            </motion.p>
+            <motion.div
+              variants={heroVariants}
+              custom={2} // third element
+              initial="hidden"
+              animate="visible"
+            >
+              <ServiceButton onClick={() => navigate('/services')} />
+            </motion.div>
           </div>
         </div>
       </div>
@@ -59,7 +95,7 @@ const LandingPage = () => {
           onClose={() => setShowForm(false)} 
         />
       )}
-    </div>
+    </motion.div>
   );
 };
 
