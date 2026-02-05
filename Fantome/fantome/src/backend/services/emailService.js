@@ -99,4 +99,4 @@ class EmailService {
 }
 
 // Export the class itself — no `new` here
-export default EmailService;
+export default new EmailService();
