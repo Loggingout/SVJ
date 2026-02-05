@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"; // Import Framer Motion
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 import Navbar from "../components/header/Navbar";
 import RequestQuoteForm from "../components/forms/RequestQuoteForm";
@@ -46,6 +47,16 @@ export default function RequestQuotePage() {
       animate="visible"
       variants={pageVariants}
     >
+      <Helmet>
+        <title>Request a Quote | Fantome Technologies</title>
+        <meta
+          name="description"
+          content="Request a personalized quote for our web design and development services. Fill out the form to get started on your custom website project with Fantome Technologies."
+        />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
+
       <Navbar
         onBookNow={() => setShowForm(true)}
         onAboutUs={() => navigate("/about")}

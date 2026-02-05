@@ -7,15 +7,8 @@ import Footer from "../components/footer/Footer";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  Code,
-  Palette,
-  TrendingUp,
-  Shield,
-  Award,
-  Zap,
-  Sparkles,
-} from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import { Code, Palette, TrendingUp, Shield, Award, Zap } from "lucide-react";
 
 export default function ServicesPage() {
   const navigate = useNavigate();
@@ -33,6 +26,15 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>Web Design & Development Services | Fantome Technologies</title>
+        <meta
+          name="description"
+          content="Explore Fantome Technologies' web development, landing page design, SEO optimization, and website management services built to convert visitors into customers."
+        />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <Navbar
         onBookNow={() => setShowForm(true)}
         onAboutUs={() => navigate("/about")}
@@ -94,7 +96,7 @@ export default function ServicesPage() {
             <Shield className="w-10 h-10 text-gray-600 mb-4" />
             <h4 className="text-2xl font-bold mb-2 text-gray-900">Silver</h4>
             <p className="text-4xl font-bold mb-4 text-gray-900">
-              $30<span className="text-lg text-gray-500">/month</span>
+              $80<span className="text-lg text-gray-500">/month</span>
             </p>
             <p className="text-black mb-4 font-semibold">
               No long-term contracts. Cancel anytime.
@@ -114,7 +116,7 @@ export default function ServicesPage() {
             <Award className="w-10 h-10 text-yellow-600 mb-4" />
             <h4 className="text-2xl font-bold mb-2 text-gray-900">Gold</h4>
             <p className="text-4xl font-bold mb-4 text-gray-900">
-              $60<span className="text-lg text-gray-500">/month</span>
+              $100<span className="text-lg text-gray-500">/month</span>
             </p>
             <p className="text-black mb-4 font-semibold">
               No long-term contracts. Cancel anytime.

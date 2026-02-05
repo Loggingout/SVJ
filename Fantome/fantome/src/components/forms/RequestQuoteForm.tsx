@@ -9,8 +9,8 @@ export default function RequestQuoteForm() {
   const [modalOpen, setModalOpen] = useState(false); // modal state
 
   const basePrices: Record<string, number> = {
-    "Landing Page": 300,
-    "Business Website": 650,
+    "Landing Page": 250,
+    "Business Website": 670,
     "Website Redesign": 300,
   };
 

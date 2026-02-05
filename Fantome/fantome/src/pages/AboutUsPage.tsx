@@ -4,6 +4,7 @@ import BookingForm from "../components/forms/BookingForm";
 import Footer from "../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import StudioImg from "../assets/FT Studio.png";
 import CompanyTeam from "../assets/FTCompanyTeam.png";
 import {
@@ -32,6 +33,16 @@ export default function AboutUsPage() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
+      <Helmet>
+        <title>About Us | Fantome Technologies</title>
+        <meta
+          name="description"
+          content="Learn more about Fantome Technologies, a small web development studio focused on building high-quality, performance-driven digital experiences."
+        />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
+
       {/* Navbar */}
       <Navbar
         onBookNow={() => setShowForm(true)}
