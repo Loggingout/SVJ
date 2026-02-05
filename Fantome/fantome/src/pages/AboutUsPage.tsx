@@ -40,6 +40,16 @@ export default function AboutUsPage() {
           content="Learn more about Fantome Technologies, a small web development studio focused on building high-quality, performance-driven digital experiences."
         />
         <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="About Us | Fantome Technologies" />
+        <meta property="og:description" content="Learn more about Fantome Technologies, a small web development studio focused on building high-quality, performance-driven digital experiences." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fantometechnologies.com/about" />
+        <meta property="og:image" content="https://fantometechnologies.com/New%20Logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us | Fantome Technologies" />
+        <meta name="twitter:description" content="Learn more about Fantome Technologies, a small web development studio focused on building high-quality, performance-driven digital experiences." />
+        <meta name="twitter:image" content="https://fantometechnologies.com/New%20Logo.png" />
+        <link rel="canonical" href="https://fantometechnologies.com/about" />
       </Helmet>
 
 

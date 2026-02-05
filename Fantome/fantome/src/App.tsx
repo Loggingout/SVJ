@@ -1,5 +1,6 @@
 import { AnimatePresence } from "motion/react";
 import { Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/scroll/ScrollToTop";
 import LandingPage from "./pages/LandingPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ServicePage from "./pages/ServicesPage";
@@ -9,6 +10,7 @@ import FourOFourPage from './pages/FourOFourPage';
 function App() {
   return (
     <AnimatePresence>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutUsPage />} />

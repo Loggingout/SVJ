@@ -33,6 +33,16 @@ export default function ServicesPage() {
           content="Explore Fantome Technologies' web development, landing page design, SEO optimization, and website management services built to convert visitors into customers."
         />
         <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Web Design & Development Services | Fantome Technologies" />
+        <meta property="og:description" content="Explore Fantome Technologies' web development, landing page design, SEO optimization, and website management services built to convert visitors into customers." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fantometechnologies.com/services" />
+        <meta property="og:image" content="https://fantometechnologies.com/New%20Logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Web Design & Development Services | Fantome Technologies" />
+        <meta name="twitter:description" content="Explore Fantome Technologies' web development, landing page design, SEO optimization, and website management services built to convert visitors into customers." />
+        <meta name="twitter:image" content="https://fantometechnologies.com/New%20Logo.png" />
+        <link rel="canonical" href="https://fantometechnologies.com/services" />
       </Helmet>
 
       <Navbar
@@ -168,7 +178,7 @@ export default function ServicesPage() {
             </div>
             <div className="text-center md:text-right">
               <p className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                $140
+                $160
               </p>
               <p className="text-gray-500 text-lg">/month</p>
             </div>
