@@ -1,7 +1,6 @@
 /**Landing Page */
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Sparkles, Code, Palette, TrendingUp, Shield, Award, Zap } from 'lucide-react';
 import BookingForm from '../components/forms/BookingForm';
 import Navbar from '../components/header/Navbar';
 import HeroImage from '../assets/Dashboard display (3).png'
