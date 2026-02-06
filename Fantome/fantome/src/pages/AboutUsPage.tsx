@@ -102,7 +102,7 @@ export default function AboutUsPage() {
             <div>
               <h3 className="text-2xl font-semibold mb-2">Founded</h3>
               <p className="text-gray-600">
-                Opened in <strong>December 2025</strong> with a focus on clean
+                Opened in <strong>December 2024</strong> with a focus on clean
                 design, strong branding, and scalable architecture.
               </p>
             </div>
