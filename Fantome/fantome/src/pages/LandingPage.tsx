@@ -6,6 +6,7 @@ import Navbar from '../components/header/Navbar';
 import HeroImage from '../assets/Dashboard display (3).png'
 import ServiceButton from '../components/buttons/ServicesButton';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -29,6 +30,25 @@ const LandingPage = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
     >
+      <Helmet>
+        <title>Fantome Technologies | Web Development & Design Studio</title>
+        <meta
+          name="description"
+          content="Fast, conversion-focused websites built for local businesses. Get more calls, leads, and customers with Fantome Technologies."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Fantome Technologies | Web Development & Design Studio" />
+        <meta property="og:description" content="Fast, conversion-focused websites built for local businesses. Get more calls, leads, and customers with Fantome Technologies." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fantometechnologies.com" />
+        <meta property="og:image" content="https://fantometechnologies.com/New%20Logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Fantome Technologies | Web Development & Design Studio" />
+        <meta name="twitter:description" content="Fast, conversion-focused websites built for local businesses. Get more calls, leads, and customers with Fantome Technologies." />
+        <meta name="twitter:image" content="https://fantometechnologies.com/New%20Logo.png" />
+        <link rel="canonical" href="https://fantometechnologies.com" />
+      </Helmet>
+
       {/* Full-Page Hero Section */}
       <div className="relative min-h-screen overflow-hidden">
         {/* Hero Background Image */}
