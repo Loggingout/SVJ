@@ -5,8 +5,9 @@ import Footer from "../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import StudioImg from "../assets/FT Studio.png";
+import StudioImg from "../assets/ft-studio.png";
 import CompanyTeam from "../assets/FTCompanyTeam.png";
+import MeImg from "../assets/me.jpg";
 import {
   Building2,
   Code2,
@@ -216,7 +217,7 @@ export default function AboutUsPage() {
       >
         <div className="relative w-full h-80 md:h-[28rem] overflow-hidden rounded-2xl">
           <motion.img
-            src={CompanyTeam}
+            src={MeImg}
             alt="Fantome Technologies Team"
             className="w-full h-full object-cover transition-transform duration-500 ease-in-out transform hover:scale-105 focus:scale-105"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -224,12 +225,6 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           />
-
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center top-100">
-            <p className="text-white text-lg sm:text-xl md:text-2xl text-center px-4 font-semibold">
-              "Pictures of our future team"
-            </p>
-          </div>
         </div>
       </motion.section>
 
