@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "/New Logo.png";
+import Logo from "/new-logo.png";
 import FormLoader from "../../components/loaders/formLoader";
 
 interface BookingFormProps {
