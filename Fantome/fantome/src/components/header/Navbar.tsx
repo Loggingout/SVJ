@@ -2,6 +2,7 @@ import { useState } from 'react'
 import AboutUsButton from '../buttons/AboutUsButton'
 import BookingButton from '../buttons/BookingButton'
 import RequestQuoteButton from '../buttons/RequestQuoteButton'
+import TestimonialButton from '../buttons/TestimonialButton'
 import { Menu, X } from 'lucide-react'
 import Logo from '../../../public/New Logo.png'
 import { useNavigate } from 'react-router-dom'
@@ -10,9 +11,10 @@ interface NavbarProps {
   onBookNow: () => void
   onAboutUs: () => void
   onRequestQuote: () => void
+  onTestimonial: () => void
 }
 
-export default function Navbar({ onBookNow, onAboutUs, onRequestQuote }: NavbarProps) {
+export default function Navbar({ onBookNow, onAboutUs, onRequestQuote, onTestimonial }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate();
 
@@ -32,7 +34,7 @@ export default function Navbar({ onBookNow, onAboutUs, onRequestQuote }: NavbarP
           <AboutUsButton onClick={onAboutUs} />
           <BookingButton onClick={onBookNow} />
           <RequestQuoteButton onClick={() => navigate('/request-quote')} />
-
+          <TestimonialButton onClick={() => navigate('/testimonials')} />
         </div>
 
         {/* Mobile Hamburger */}

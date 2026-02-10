@@ -71,6 +71,7 @@ const LandingPage = () => {
             onBookNow={() => setShowForm(true)} 
             onAboutUs={() => navigate('/about')}
             onRequestQuote={() => navigate('/request-quote')}
+            onTestimonial={() => navigate('/testimonials')}
           />
         </div>
 

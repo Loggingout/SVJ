@@ -6,6 +6,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ServicePage from "./pages/ServicesPage";
 import RequestQuotePage from "./pages/RequestQuotePage";
 import FourOFourPage from './pages/FourOFourPage';
+import TestimonialPage from './pages/TestimonialPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/services" element={<ServicePage />} />
         <Route path="/request-quote" element={<RequestQuotePage />} />
         <Route path="/FourOFour" element={<FourOFourPage />} />
+        <Route path="/testimonials" element={<TestimonialPage />} />
         {/* Add more routes here as you build more pages */}
       </Routes>
     </AnimatePresence>

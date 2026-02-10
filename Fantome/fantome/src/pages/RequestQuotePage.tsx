@@ -54,23 +54,47 @@ export default function RequestQuotePage() {
           content="Request a personalized quote for our web design and development services. Fill out the form to get started on your custom website project with Fantome Technologies."
         />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Request a Quote | Fantome Technologies" />
-        <meta property="og:description" content="Request a personalized quote for our web design and development services. Fill out the form to get started on your custom website project with Fantome Technologies." />
+        <meta
+          property="og:title"
+          content="Request a Quote | Fantome Technologies"
+        />
+        <meta
+          property="og:description"
+          content="Request a personalized quote for our web design and development services. Fill out the form to get started on your custom website project with Fantome Technologies."
+        />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://fantometechnologies.com/request-quote" />
-        <meta property="og:image" content="https://fantometechnologies.com/New%20Logo.png" />
+        <meta
+          property="og:url"
+          content="https://fantometechnologies.com/request-quote"
+        />
+        <meta
+          property="og:image"
+          content="https://fantometechnologies.com/New%20Logo.png"
+        />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Request a Quote | Fantome Technologies" />
-        <meta name="twitter:description" content="Request a personalized quote for our web design and development services. Fill out the form to get started on your custom website project with Fantome Technologies." />
-        <meta name="twitter:image" content="https://fantometechnologies.com/New%20Logo.png" />
-        <link rel="canonical" href="https://fantometechnologies.com/request-quote" />
+        <meta
+          name="twitter:title"
+          content="Request a Quote | Fantome Technologies"
+        />
+        <meta
+          name="twitter:description"
+          content="Request a personalized quote for our web design and development services. Fill out the form to get started on your custom website project with Fantome Technologies."
+        />
+        <meta
+          name="twitter:image"
+          content="https://fantometechnologies.com/New%20Logo.png"
+        />
+        <link
+          rel="canonical"
+          href="https://fantometechnologies.com/request-quote"
+        />
       </Helmet>
-
 
       <Navbar
         onBookNow={() => setShowForm(true)}
         onAboutUs={() => navigate("/about")}
         onRequestQuote={() => navigate("/request-quote")}
+        onTestimonial={() => navigate("/testimonials")}
       />
 
       <div className="max-w-3xl md:h-screen mx-auto px-6 py-24 ">
