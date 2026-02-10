@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
-import Logo from "/public/New Logo.png";
-import FormLoader from "../loaders/formLoader";
+import Logo from "/New Logo.png";
+import FormLoader from "../../components/loaders/formLoader";
 
 interface BookingFormProps {
   onClose?: () => void;

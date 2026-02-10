@@ -4,7 +4,7 @@ import BookingButton from '../buttons/BookingButton'
 import RequestQuoteButton from '../buttons/RequestQuoteButton'
 import TestimonialButton from '../buttons/TestimonialButton'
 import { Menu, X } from 'lucide-react'
-import Logo from '../../../public/New Logo.png'
+import Logo from '../../../public/new-logo.png'
 import { useNavigate } from 'react-router-dom'
 
 interface NavbarProps {
@@ -53,9 +53,8 @@ export default function Navbar({ onBookNow, onAboutUs, onRequestQuote, onTestimo
 
       {/* Mobile Menu */}
       <div
-        className={`
-          md:hidden transition-all duration-300 ease-out
-          ${menuOpen ? 'max-h-40 opacity-100 mt-6' : 'max-h-0 opacity-0'}
+        className={`md:hidden transition-all duration-300 ease-out overflow-hidden
+          ${menuOpen ? 'max-h-screen opacity-100 mt-6' : 'max-h-0 opacity-0'}
         `}
       >
         <div className="flex flex-col gap-4 bg-transparent rounded-2xl p-6">
@@ -75,6 +74,12 @@ export default function Navbar({ onBookNow, onAboutUs, onRequestQuote, onTestimo
             onClick={() => {
               setMenuOpen(false)
               onRequestQuote()
+            }}
+          />
+          <TestimonialButton
+            onClick={() => {
+              setMenuOpen(false)
+              onTestimonial()
             }}
           />
         </div>
