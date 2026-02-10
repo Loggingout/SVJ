@@ -89,7 +89,7 @@ export default function Footer() {
           <div className="flex items-center justify-center sm:justify-end gap-2">
             <span className="text-sm text-gray-500">Powered by</span>
             <img
-              src="/public/New Logo.png"
+              src="/public/new-logo.png"
               alt="Fantome Technologies"
               className="h-5 w-auto opacity-90"
             />
