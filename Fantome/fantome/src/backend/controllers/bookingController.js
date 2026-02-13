@@ -36,6 +36,7 @@ export const createBooking = async (req, res) => {
         name: booking.businessName,
         email: booking.email, 
         service: booking.productIdea,
+        estimatedBudget: booking.estimatedBudget,
         date: booking.createdAt,
       });
 

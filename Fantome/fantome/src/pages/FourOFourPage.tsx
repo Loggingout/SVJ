@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import Logo from '/public/new-logo.png';
+import Logo from '/new-logo.png';
 import { useNavigate } from "react-router-dom";
 
 export default function FourOFourPage() {

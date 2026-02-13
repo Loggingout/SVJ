@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
 
 interface Testimonial {
   logo: string;      // Path to client logo
@@ -23,10 +22,11 @@ export default function ClientTestimonial({
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-13  ">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-shadow-md">
         What Our Clients Say
       </h2>
+      <p className="text-center mb-5n text-md font-semibold"> Providing more calls, foot traffic, and leads for our clients. One client at a time!</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {testimonials.map((t, idx) => (
@@ -38,17 +38,15 @@ export default function ClientTestimonial({
             transition={{ duration: 0.6, delay: idx * 0.2 }}
           >
             {/* Top Quote Icon */}
-            <Quote className="absolute top-4 left-4 h-6 w-6 text-gray-300" />
+            
 
             <img
               src={t.logo}
               alt={`${t.name} logo`}
-              className="h-20 w-20 md:h-24 md:w-24 object-contain mb-6"
+              className="h-20 w-20 md:h-24 md:w-24 object-contain mb-6 rounded-sm"
             />
             <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">{t.name}</h3>
             <div className="bg-gradient-to-r from-gray-200/20 to-gray-300/20 p-6 md:p-8 rounded-xl text-gray-700 text-center text-sm md:text-base relative">
-              {/* Bottom Quote Icon */}
-              <Quote className="absolute bottom-4 right-4 h-6 w-6 text-gray-300 rotate-180" />
               {t.comment}
             </div>
           </motion.div>

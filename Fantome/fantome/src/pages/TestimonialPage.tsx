@@ -40,7 +40,7 @@ export default function TestimonialPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Navbar */}
         <Navbar
@@ -54,8 +54,7 @@ export default function TestimonialPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-6 text-shadow-lg">
             Real Client Testimonials
           </h1>
-          <p className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-center text-xl text-shadow-sm">
-            {" "}
+          <p className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-center text-xl font-semibold">
             Hear what our Client's have to say about our work!
           </p>
         </div>
@@ -91,7 +90,7 @@ export default function TestimonialPage() {
                   logo: "/cheerful-cup.png",
                   name: "A Cheerful Cup",
                   comment:
-                    "Fantome Technologies built our website beautifully and on time! I recently subscribed to their gold tier for the website management services they provide. I love the monthly check-in's. Our website use to have troubles loading our images. We don't have that problem anymore. ",
+                    "Fantome Technologies built our website beautifully and on time! I recently subscribed to their gold tier in website management services. I love the monthly check-in's. Our website use to have troubles loading our images and it didn't have the personaility we wanted. We don't have that problem anymore. ",
                 },
               ]}
             />

@@ -40,6 +40,11 @@ export default function Footer() {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link to="/testimonials" className="hover:text-purple-600">
+                    Read Testimonials
+                  </Link>
+                </li>
               </ul>
             </div>
 

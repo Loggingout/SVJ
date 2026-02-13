@@ -102,7 +102,7 @@ export default function GalleryTestimonial({
                   key={afterIndex}
                   src={safeAfterImages[afterIndex]}
                   alt={`After image ${afterIndex + 1}`}
-                  className="w-full h-auto max-h-[36rem] object-contain drop-shadow-xl/50"
+                  className="w-full h-auto max-h-[36rem] object-contain drop-shadow-xl/50 rounded-md"
                   initial={{ opacity: 0, x: 60 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }}
